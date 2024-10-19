@@ -1,5 +1,11 @@
 # ArtDoc
 
+## Participantes
+
+- Edmund Soares de Souza
+- Vinicius Lima Teider
+- Matheus Henrique Heinzen
+
 ## Função
 
 O Sistema será utilizado para a avaliação e visualização de arte, sendo diferenciada entre artes musicais e artes visuais, como pinturas e imagens.
