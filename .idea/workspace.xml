@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d397542-96ca-4374-ace4-7aab927f9987" name="Changes" comment="" />
+    <list default="true" id="94e633d8-a7f4-40b5-9ac8-3ca1364b5784" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Autor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Autor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Critico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Critico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Livro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Livro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Musica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Musica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pintura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pintura.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,12 +21,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 2
-}]]></component>
-  <component name="ProjectId" id="2nnskbMRiyJxZ0nU92CAoVAYO4b" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2noNAwcV8fP4gyxSpjnaEBiruGn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -23,17 +32,18 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0d397542-96ca-4374-ace4-7aab927f9987" name="Changes" comment="" />
-      <created>1729620318985</created>
+      <changelist id="94e633d8-a7f4-40b5-9ac8-3ca1364b5784" name="Changes" comment="" />
+      <created>1729635332294</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1729620318985</updated>
+      <updated>1729635332294</updated>
     </task>
     <servers />
   </component>
