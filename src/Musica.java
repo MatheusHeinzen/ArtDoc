@@ -7,4 +7,13 @@ public class Musica extends Arte {
         this.estilo = estilo;
         this.duracao = duracao;
     }
+
+
+   public void listarObras(){
+
+   }
+   public void ouvirMusica(){
+
+   }
+
 }

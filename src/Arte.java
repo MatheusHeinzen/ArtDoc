@@ -15,6 +15,9 @@ public abstract class Arte {
        this.anoPublicacao  = anoPublicacao;
    }
 
+   public void listarObras(){
+
+   }
 
 
 }

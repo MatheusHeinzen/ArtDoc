@@ -8,4 +8,7 @@ public class Comprador extends Pessoa{
         this.minhasObras = minhasObras;
 
     }
+    public void comprarArte(){
+        
+    }
 }

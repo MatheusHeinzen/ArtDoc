@@ -11,4 +11,12 @@ public class Livro extends Arte{
         this.sinopse = sinopse;
         this.valorLivro = valorLivro;
     }
+
+
+    public void listarObras(){
+
+    }
+    public void lerSinopse(){
+
+    }
 }

@@ -9,4 +9,11 @@ public class Pintura extends Arte{
         this.dimensao = dimensao;
         this.valorVenda = valorVenda;
     }
+
+    public void listarObras(){
+
+    }
+    public void visualizarArte(){
+
+    }
 }
