@@ -1,9 +1,16 @@
-package src;
+public class Critico extends Pessoa{
+    private String certificado;
 
-public class Critico extends Usuario{
+    public Critico(String nomePessoa, String dataNascimento, String genero, String certificado) {
+        super(nomePessoa, dataNascimento, genero);
+        this.certificado = certificado;
 
+    }
 
-    public Critico(String nomeUsuario, String dataNascimento, String genero) {
-        super(nomeUsuario, dataNascimento, genero);
+    public void avaliarArte(){
+
+    }
+    public void avaliarAutor(){
+
     }
 }

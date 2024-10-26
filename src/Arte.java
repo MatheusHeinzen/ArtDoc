@@ -1,5 +1,7 @@
 package src;
 
+import javax.swing.*;
+
 public abstract class Arte {
     private String nomeArte;
     private String autor;
@@ -15,6 +17,9 @@ public abstract class Arte {
         this.anoPublicacao  = anoPublicacao;
     }
 
+    public void listarObras(){
+
+    }
 
 
 }

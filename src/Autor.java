@@ -1,9 +1,14 @@
-package src;
+public class Autor extends Pessoa {
+    private String minhasObras;
+    private double mediaNotas;
+    private double maxDesconto;
 
-public class Autor extends Usuario {
+    public Autor(String nomePessoa, String dataNascimento, String genero, String minhasObras, double mediaNotas, double maxDesconto) {
+        super(nomePessoa, dataNascimento, genero);
+        this.minhasObras = minhasObras;
+        this.mediaNotas = mediaNotas;
+        this.maxDesconto = maxDesconto;
 
 
-    public Autor(String nomeUsuario, String dataNascimento, String genero) {
-        super(nomeUsuario, dataNascimento, genero);
     }
 }
