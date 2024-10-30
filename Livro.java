@@ -2,12 +2,13 @@ import java.util.ArrayList;
 
 
 public class Livro extends Arte {
+    //Atributos
     private String generoLiterario;
     private int numeroPaginas;
     private String sinopse;
-
     private static ArrayList<Livro> listaLivros = new ArrayList<>();
 
+    //Construtor
     public Livro(String nome, String autor, String descricao, int anoPublicacao, String generoLiterario, int numeroPaginas, String sinopse, double valorArte) {
         super(nome, autor, descricao, anoPublicacao, valorArte);
         this.generoLiterario = generoLiterario;
@@ -24,8 +25,7 @@ public class Livro extends Arte {
                 "\nValor do Livro: " + getValorArte();
     }
 
-
-
+    //Metodos
     public void listarObras(){
         System.out.println("Lista de Livros:");
         for (Livro livro : listaLivros) {

@@ -9,6 +9,6 @@ public class Main {
 
         c.avaliarArte(5, livro1);
         c.avaliarArte(0, livro1);
-        System.out.println(livro1.getMediaNota());
+        System.out.println(livro1.mediaNota());
     }
 }

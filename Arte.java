@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public abstract class Arte {
+    //Atributos
     private String nomeArte;
     private String autor;
     private String descricao;
@@ -8,7 +9,7 @@ public abstract class Arte {
     private int anoPublicacao;
     private double valorArte;
 
-
+    //Construtor
     public Arte(String nome, String autor, String descricao, int anoPublicacao, double valorArte){
         this.nomeArte = nome;
         this.autor = autor;
@@ -17,6 +18,7 @@ public abstract class Arte {
         this.valorArte = valorArte;
     }
 
+    //To String
     public String toString() {
         return "Nome: " + nomeArte +
                 "\nAutor: " + autor +
@@ -24,11 +26,10 @@ public abstract class Arte {
                 "\nAno de Publicação: " + anoPublicacao;
     }
 
+    //Metodo Abstrato
+    public abstract void listarObras();
 
-    public void listarObras(){
-
-    }
-
+    //Getters e Setters
     public String getNomeArte() {
         return nomeArte;
     }
@@ -37,11 +38,12 @@ public abstract class Arte {
         return valorArte;
     }
 
+    //Métodos
     public void adicionarNota(int avaliacao){
         nota.add(avaliacao);
     }
 
-    public double getMediaNota() {
+    public double mediaNota() {
         double somaNota = 0.0;
         for (int i : nota){
             somaNota += i;

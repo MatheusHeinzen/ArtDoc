@@ -13,7 +13,7 @@ public class Musica extends Arte {
 
     }
     public void ouvirMusica(){
-
+        System.out.println("🎶🎵🎶🎵");
     }
 
 }
