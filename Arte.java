@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 public abstract class Arte {
     private String nomeArte;
     private String autor;
     private String descricao;
+    private ArrayList<Integer> nota = new ArrayList<Integer>();
     private int anoPublicacao;
     private double valorArte;
 
@@ -32,5 +35,17 @@ public abstract class Arte {
 
     public double getValorArte() {
         return valorArte;
+    }
+
+    public void adicionarNota(int avaliacao){
+        nota.add(avaliacao);
+    }
+
+    public double getMediaNota() {
+        double somaNota = 0.0;
+        for (int i : nota){
+            somaNota += i;
+        }
+        return somaNota/nota.size();
     }
 }

@@ -5,10 +5,10 @@ public class Main {
 
         livro1.listarObras();
 
-        Autor autor = new Autor("Jorge", "30/09", "M" , 5.0 , 3);
-        autor.adicionarObra(livro1);
-        autor.mostrarMinhasObras();
-        autor.adicionarObra(livro2);
-        autor.mostrarMinhasObras();
+        Critico c = new Critico("Jorge", "30/09", "M" , "Confia");
+
+        c.avaliarArte(5, livro1);
+        c.avaliarArte(0, livro1);
+        System.out.println(livro1.getMediaNota());
     }
 }

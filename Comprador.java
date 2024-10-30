@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Comprador extends Pessoa{
     private double carteira;
     private ArrayList<Arte> minhasObras = new ArrayList<Arte>();
-    private ArrayList<Arte> minhasLista = new ArrayList<Arte>();
+    private ArrayList<Arte> minhaLista = new ArrayList<Arte>();
 
     public Comprador(String nomePessoa, String dataNascimento, String genero, double carteira) {
         super(nomePessoa, dataNascimento, genero);
@@ -23,6 +23,16 @@ public class Comprador extends Pessoa{
             minhasObras.add(obraDesejada);
         } else{
             System.out.println("A compra foi negada, consulte o seu saldo ou faça uma proposta.");
+        }
+    }
+
+    public void adicionarNaMinhaLista(Arte obraDesejada){
+        minhaLista.add(obraDesejada);
+    }
+
+    public void verMinhaLista(){
+        for (Arte arte : minhaLista){
+            System.out.println(arte.getNomeArte());
         }
     }
 

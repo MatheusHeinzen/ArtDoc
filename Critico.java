@@ -7,8 +7,8 @@ public class Critico extends Pessoa{
 
     }
 
-    public void avaliarArte(){
-
+    public void avaliarArte(int nota, Arte arte){
+        arte.adicionarNota(nota);
     }
     public void avaliarAutor(){
 
