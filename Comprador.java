@@ -1,15 +1,29 @@
+import java.util.ArrayList;
+
 public class Comprador extends Pessoa{
     private double carteira;
-    private String minhasObras;
+    private ArrayList<Arte> minhasObras = new ArrayList<Arte>();
+    private ArrayList<Arte> minhasLista = new ArrayList<Arte>();
 
-    public Comprador(String nomePessoa, String dataNascimento, String genero, double carteira, String minhasObras) {
+    public Comprador(String nomePessoa, String dataNascimento, String genero, double carteira) {
         super(nomePessoa, dataNascimento, genero);
         this.carteira = carteira;
-        this.minhasObras = minhasObras;
 
     }
-    public void comprarArte(){
 
+    public void adicionarSaldo(double dinheiro){
+        if (dinheiro>0){
+            carteira += dinheiro;
+        } else{
+            System.out.println("O valor não pode ser adicionado ao saldo, tente colocar um valor válido.");
+        }
+    }
+    public void comprarArte(Arte obraDesejada){
+        if (carteira >= obraDesejada.getValorArte()){
+            minhasObras.add(obraDesejada);
+        } else{
+            System.out.println("A compra foi negada, consulte o seu saldo ou faça uma proposta.");
+        }
     }
 
     public void fazerProposta(){
