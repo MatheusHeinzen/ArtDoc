@@ -1,9 +1,7 @@
-package src;
-
 import java.util.ArrayList;
 
 
-public class Livro extends Arte{
+public class Livro extends Arte {
     private String generoLiterario;
     private int numeroPaginas;
     private String sinopse;

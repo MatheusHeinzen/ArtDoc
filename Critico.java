@@ -1,5 +1,3 @@
-package src;
-
 public class Critico extends Pessoa{
     private String certificado;
 

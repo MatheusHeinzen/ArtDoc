@@ -1,5 +1,3 @@
-package src;
-
 public class Autor extends Pessoa {
     private String minhasObras;
     private double mediaNotas;

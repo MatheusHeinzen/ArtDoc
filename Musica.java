@@ -1,5 +1,3 @@
-package src;
-
 public class Musica extends Arte {
     private String estilo;
     private double duracao;

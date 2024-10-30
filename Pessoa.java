@@ -1,5 +1,3 @@
-package src;
-
 public abstract class Pessoa {
     private String nomePessoa;
     private String dataNascimento;

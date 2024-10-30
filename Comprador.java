@@ -1,5 +1,3 @@
-package src;
-
 public class Comprador extends Pessoa{
     private double carteira;
     private String minhasObras;

@@ -1,5 +1,3 @@
-package src;
-
 public class Main {
     public static void main(String[] args) {
         Livro livro1 = new Livro("Harry Potter", "JK", "mlk q quase morreu", 1997, "Ficção", 300, "Sinopse A", 39.90);

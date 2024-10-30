@@ -1,8 +1,3 @@
-package src;
-
-import javax.swing.*;
-import java.util.ArrayList;
-
 public abstract class Arte {
     private String nomeArte;
     private String autor;

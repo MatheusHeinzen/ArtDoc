@@ -1,6 +1,4 @@
-package src;
-
-public class Pintura extends Arte{
+public class Pintura extends Arte {
     private String traco;
     private String dimensao;
     private double valorVenda;
