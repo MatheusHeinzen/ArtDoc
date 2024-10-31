@@ -7,25 +7,27 @@ public class Comprador extends Pessoa{
     private ArrayList<Arte> minhaLista = new ArrayList<Arte>();
 
     //Construtor
-    public Comprador(String nomePessoa, String dataNascimento, String genero, double carteira) {
-        super(nomePessoa, dataNascimento, genero);
+    public Comprador(String nomePessoa, String dataNascimento, String genero, String senha, double carteira) {
+        super(nomePessoa, dataNascimento, genero, senha);
         this.carteira = carteira;
 
     }
 
     //Métodos
-    public void adicionarSaldo(double dinheiro){
+    public String adicionarSaldo(double dinheiro){
         if (dinheiro>0){
             carteira += dinheiro;
+            return "Sua carteira agora tem R$ " + carteira;
         } else{
-            System.out.println("O valor não pode ser adicionado ao saldo, tente colocar um valor válido.");
+            return "O valor não pode ser adicionado ao saldo, tente colocar um valor válido.";
         }
     }
-    public void comprarArte(Arte obraDesejada){
+    public String comprarArte(Arte obraDesejada){
         if (carteira >= obraDesejada.getValorArte()){
             minhasObras.add(obraDesejada);
+            return "Obra comprada com sucesso.";
         } else{
-            System.out.println("A compra foi negada, consulte o seu saldo ou faça uma proposta.");
+            return "A compra foi negada, consulte o seu saldo.";
         }
     }
 

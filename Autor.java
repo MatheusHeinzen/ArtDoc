@@ -7,8 +7,8 @@ public class Autor extends Pessoa {
     private double mediaNotas;
 
     //Construtor
-    public Autor(String nomePessoa, String dataNascimento, String genero) {
-        super(nomePessoa, dataNascimento, genero);
+    public Autor(String nomePessoa, String dataNascimento, String genero, String senha) {
+        super(nomePessoa, dataNascimento, genero, senha);
     }
 
     //Getters e Setters

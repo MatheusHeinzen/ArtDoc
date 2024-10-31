@@ -3,17 +3,19 @@ public class Critico extends Pessoa{
     private String certificado;
 
     //Construtor
-    public Critico(String nomePessoa, String dataNascimento, String genero, String certificado) {
-        super(nomePessoa, dataNascimento, genero);
+    public Critico(String nomePessoa, String dataNascimento, String genero, String senha, String certificado) {
+        super(nomePessoa, dataNascimento, genero, senha);
         this.certificado = certificado;
 
     }
 
     //Métodos
-    public void avaliarArte(int avaliacao, Arte arte){
+    public String avaliarArte(int avaliacao, Arte arte){
         arte.adicionarNota(avaliacao);
+        return "Arte avaliada.";
     }
-    public void avaliarAutor(int avaliacao, Autor autor){
+    public String avaliarAutor(int avaliacao, Autor autor){
         autor.adicionarNota(avaliacao);
+        return "Autor avaliado.";
     }
 }

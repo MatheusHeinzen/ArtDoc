@@ -1,11 +1,18 @@
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            InterfaceGrafica frame = new InterfaceGrafica();
+            frame.setVisible(true);
+        });
+
         Livro livro1 = new Livro("Harry Potter", "JK", "mlk q quase morreu", 1997, "Ficção", 300, "Sinopse A", 39.90);
         Livro livro2 = new Livro("IT", "Stephen King", "molecada ferrada com um et", 2014, "Terror", 250, "Sinopse B", 29.90);
 
         livro1.listarObras();
 
-        Critico c = new Critico("Jorge", "30/09", "M" , "Confia");
+        Critico c = new Critico("Jorge", "30/09", "M" , "123", "Confia");
 
         c.avaliarArte(5, livro1);
         c.avaliarArte(0, livro1);
