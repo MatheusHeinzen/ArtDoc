@@ -11,7 +11,9 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
         this.genero = genero;
         this.senha = senha;
-
     }
 
+    public void ouvirMusica(Musica musica){
+        System.out.println("🎶🎵🎶🎵");
+    }
 }

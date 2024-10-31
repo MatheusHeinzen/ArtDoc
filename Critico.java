@@ -1,12 +1,14 @@
+import java.util.ArrayList;
+
 public class Critico extends Pessoa{
     //Atributos
     private String certificado;
+    private ArrayList<Arte> minhaLista = new ArrayList<Arte>();
 
     //Construtor
     public Critico(String nomePessoa, String dataNascimento, String genero, String senha, String certificado) {
         super(nomePessoa, dataNascimento, genero, senha);
         this.certificado = certificado;
-
     }
 
     //Métodos
@@ -17,5 +19,11 @@ public class Critico extends Pessoa{
     public String avaliarAutor(int avaliacao, Autor autor){
         autor.adicionarNota(avaliacao);
         return "Autor avaliado.";
+    }
+
+    @Override
+    public void ouvirMusica(Musica musica){
+        System.out.println("🎶🎵🎶🎵");
+        minhaLista.add(musica);
     }
 }

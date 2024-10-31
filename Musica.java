@@ -8,12 +8,7 @@ public class Musica extends Arte {
         this.duracao = duracao;
     }
 
-
     public void listarObras(){
-
-    }
-    public void ouvirMusica(){
-        System.out.println("🎶🎵🎶🎵");
     }
 
 }
