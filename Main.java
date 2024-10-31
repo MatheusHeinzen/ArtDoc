@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater( () -> {
             InterfaceGrafica frame = new InterfaceGrafica();
             frame.setVisible(true);
         });
@@ -17,5 +17,13 @@ public class Main {
         c.avaliarArte(5, livro1);
         c.avaliarArte(0, livro1);
         System.out.println(livro1.mediaNota());
+
+        try {
+            Musica musica1 = new Musica("Risk", "Deftones", "Musica Top", 2006, "NuMetal", 3, 40, "mp4");
+        }
+        catch (ExtensaoException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

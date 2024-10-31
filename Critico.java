@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Critico extends Pessoa{
     //Atributos
     private String certificado;
-    private ArrayList<Arte> minhaLista = new ArrayList<Arte>();
+    private ArrayList<Arte> minhasAvaliacoes = new ArrayList<Arte>();
 
     //Construtor
     public Critico(String nomePessoa, String dataNascimento, String genero, String senha, String certificado) {
@@ -24,6 +24,6 @@ public class Critico extends Pessoa{
     @Override
     public void ouvirMusica(Musica musica){
         System.out.println("🎶🎵🎶🎵");
-        minhaLista.add(musica);
+        minhasAvaliacoes.add(musica);
     }
 }
