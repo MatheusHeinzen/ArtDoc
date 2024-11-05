@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.TimerTask;
 
 public class InterfaceGrafica extends JFrame {
     //Telas
+    private JPanel telaLogo;
     private JPanel telaInicial;
     private JPanel telaCadastro;
     private JPanel telaLogin;
@@ -14,11 +16,41 @@ public class InterfaceGrafica extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        telaLogo = criarTelaLogo();
         telaInicial = criarTelaInicial();
         telaCadastro = criarTelaCadastro();
         telaLogin = criarTelaLogin();
 
-        add(telaInicial);
+        add(telaLogo);
+    }
+
+    private JPanel criarTelaLogo() {
+        JPanel panel = new JPanel();
+        JPanel panelLogo = new JPanel();
+        JPanel panelBotao = new JPanel();
+
+        panelLogo.setLayout(new BoxLayout(panelLogo, BoxLayout.Y_AXIS));
+        Icon logo = new ImageIcon("ARTDOC.png");
+        JLabel labelLogo = new JLabel("" , logo, SwingConstants.CENTER );
+        panelLogo.add(labelLogo);
+
+        JButton botaoContinuar = new JButton("Entrar");
+        botaoContinuar.addActionListener(e -> {
+            remove(telaLogo);
+            add(telaInicial);
+            revalidate();
+            repaint();
+        });
+
+        panelBotao.add(botaoContinuar);
+
+        panel.add(panelLogo);
+        panel.add(panelBotao);
+
+        FlowLayout layout = new FlowLayout();
+        panel.setLayout(layout);
+
+        return panel;
     }
 
     //Tela Inicial
