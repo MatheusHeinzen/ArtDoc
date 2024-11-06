@@ -1,20 +1,22 @@
 public class Pintura extends Arte {
     //Atributos
-    private String traco;
-    private String dimensao;
+    private String estilo;
+    private double valorArte;
 
     //Construtor
-    public Pintura(String nome, String autor, String descricao, int anoPublicacao, String dimensao, double valorArte) {
-        super(nome, autor, descricao, anoPublicacao, valorArte);
-        this.traco = traco;
-        this.dimensao = dimensao;
+    public Pintura(String nome, Autor autor, int anoPublicacao, String estilo, double valorArte) {
+        super(nome, autor, anoPublicacao);
+        this.estilo = estilo;
+        this.valorArte = valorArte;
     }
 
-    //Métodos
-    public void listarObras(){
+    public double getValorArte() {
+        return valorArte;
+    }
 
+    //Métodos   <> DESENVOLVER
+    public void listarObras(){
     }
     public void visualizarArte(){
-
     }
 }

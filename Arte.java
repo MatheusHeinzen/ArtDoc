@@ -3,26 +3,22 @@ import java.util.ArrayList;
 public abstract class Arte {
     //Atributos
     private String nomeArte;
-    private String autor;
-    private String descricao;
-    private ArrayList<Integer> nota = new ArrayList<Integer>();
+    private Autor autor;
     private int anoPublicacao;
-    private double valorArte;
+    private ArrayList<Integer> nota = new ArrayList<Integer>();
+
 
     //Construtor
-    public Arte(String nome, String autor, String descricao, int anoPublicacao, double valorArte){
+    public Arte(String nome, Autor autor, int anoPublicacao){
         this.nomeArte = nome;
         this.autor = autor;
-        this.descricao = descricao;
         this.anoPublicacao  = anoPublicacao;
-        this.valorArte = valorArte;
     }
 
     //To String
     public String toString() {
         return "Nome: " + nomeArte +
                 "\nAutor: " + autor +
-                "\nDescrição: " + descricao +
                 "\nAno de Publicação: " + anoPublicacao;
     }
 
@@ -32,10 +28,6 @@ public abstract class Arte {
     //Getters e Setters
     public String getNomeArte() {
         return nomeArte;
-    }
-
-    public double getValorArte() {
-        return valorArte;
     }
 
     //Métodos

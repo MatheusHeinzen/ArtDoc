@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class Autor extends Pessoa {
     //Atributos
     private ArrayList<Arte> minhasObras = new ArrayList<Arte>();
-    private ArrayList<Integer> nota = new ArrayList<Integer>();
+    private ArrayList<Integer> notas = new ArrayList<Integer>();
     private double mediaNotas;
 
     //Construtor
-    public Autor(String nomePessoa, String dataNascimento, String genero, String senha) {
-        super(nomePessoa, dataNascimento, genero, senha);
+    public Autor(String usuario, String nomePessoa, String senha, String genero) {
+        super(usuario, senha, nomePessoa, genero);
     }
 
     //Getters e Setters
@@ -29,7 +29,7 @@ public class Autor extends Pessoa {
     }
 
     public void adicionarNota(int avaliacao) {
-        nota.add(avaliacao);
+        notas.add(avaliacao);
     }
 
     public double calcularMediaNotas(){
