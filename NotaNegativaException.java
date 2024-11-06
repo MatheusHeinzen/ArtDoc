@@ -3,6 +3,3 @@ public class NotaNegativaException extends Exception {
         super(mensage);
     }
 }
-
-
-// colocar erro no metodo de atribuir nota >>> não esquecer
