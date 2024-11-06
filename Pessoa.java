@@ -2,18 +2,20 @@ public abstract class Pessoa {
     //Atributos
     private String nomePessoa;
     private String dataNascimento;
-    private String genero;
     private String senha;
 
     //Construtor
-    public Pessoa(String nomePessoa, String dataNascimento, String genero, String senha){
+    public Pessoa(String nomePessoa, String dataNascimento, String senha){
         this.nomePessoa = nomePessoa;
         this.dataNascimento = dataNascimento;
-        this.genero = genero;
         this.senha = senha;
     }
 
     public void ouvirMusica(Musica musica){
         System.out.println("🎶🎵🎶🎵");
     }
+
+    public abstract void setCarteira(int carteira);
+
+    public abstract int getCarteira();
 }

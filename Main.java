@@ -12,7 +12,7 @@ public class Main {
 
         livro1.listarObras();
 
-        Critico c = new Critico("Jorge", "30/09", "M" , "123", "Confia");
+        Critico c = new Critico("Jorge", "30/09" , "123");
 
         c.avaliarArte(5, livro1);
         c.avaliarArte(0, livro1);

@@ -2,15 +2,13 @@ import java.util.ArrayList;
 
 public class Comprador extends Pessoa{
     //Atributos
-    private double carteira;
+    private int carteira;
     private ArrayList<Arte> minhasObras = new ArrayList<Arte>();
     private ArrayList<Arte> minhaLista = new ArrayList<Arte>();
 
     //Construtor
-    public Comprador(String nomePessoa, String dataNascimento, String genero, String senha, double carteira) {
-        super(nomePessoa, dataNascimento, genero, senha);
-        this.carteira = carteira;
-
+    public Comprador(String nomePessoa, String dataNascimento, String senha) {
+        super(nomePessoa, dataNascimento, senha);
     }
 
     //Métodos
@@ -39,5 +37,13 @@ public class Comprador extends Pessoa{
         for (Arte arte : minhaLista){
             System.out.println(arte.getNomeArte());
         }
+    }
+
+    public void setCarteira(int carteira) {
+        this.carteira = carteira;
+    }
+
+    public int getCarteira() {
+        return carteira;
     }
 }

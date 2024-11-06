@@ -7,8 +7,18 @@ public class Autor extends Pessoa {
     private double mediaNotas;
 
     //Construtor
-    public Autor(String nomePessoa, String dataNascimento, String genero, String senha) {
-        super(nomePessoa, dataNascimento, genero, senha);
+    public Autor(String nomePessoa, String dataNascimento, String senha) {
+        super(nomePessoa, dataNascimento, senha);
+    }
+
+    @Override
+    public void setCarteira(int carteira) {
+
+    }
+
+    @Override
+    public int getCarteira() {
+        return 0;
     }
 
     //Getters e Setters

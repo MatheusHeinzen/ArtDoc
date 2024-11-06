@@ -2,13 +2,11 @@ import java.util.ArrayList;
 
 public class Critico extends Pessoa{
     //Atributos
-    private String certificado;
     private ArrayList<Arte> minhasAvaliacoes = new ArrayList<Arte>();
 
     //Construtor
-    public Critico(String nomePessoa, String dataNascimento, String genero, String senha, String certificado) {
-        super(nomePessoa, dataNascimento, genero, senha);
-        this.certificado = certificado;
+    public Critico(String nomePessoa, String dataNascimento, String senha) {
+        super(nomePessoa, dataNascimento, senha);
     }
 
     //Métodos
@@ -25,5 +23,15 @@ public class Critico extends Pessoa{
     public void ouvirMusica(Musica musica){
         System.out.println("🎶🎵🎶🎵");
         minhasAvaliacoes.add(musica);
+    }
+
+    @Override
+    public void setCarteira(int carteira) {
+
+    }
+
+    @Override
+    public int getCarteira() {
+        return 0;
     }
 }
