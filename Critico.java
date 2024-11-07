@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Critico extends Pessoa{
     //Atributos
@@ -31,8 +32,16 @@ public class Critico extends Pessoa{
     }
 
     @Override
-    public void ouvirMusica(Musica musica){
-        System.out.println("Cê tá ouvindo!!! 🎶🎵🎶🎵 \n Mas musica também é arte, então ela vai pra lista de artes avaliadas");
-        artesAvaliadas.add(musica);
+    public void ouvirMusica(Musica musica) {
+        System.out.println("Cê tá ouvindo!!! 🎶🎵🎶🎵 \n Mas musica também é arte, então avalia ela aí pra nx.");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Qual a nota para essa música?");
+        int avaliacao = sc.nextInt();
+        try {
+            avaliarArte(avaliacao, musica);
+            artesAvaliadas.add(musica);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

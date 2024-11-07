@@ -9,7 +9,7 @@ public class Musica extends Arte {
         this.duracao = duracao;
         this.extensao = extensao;
         if (!"mp3".equals(extensao)) {
-            throw new ExtensaoException("Arquivo não suportado. O programa aceita apenas mp3.");
+            throw new ExtensaoException();
         }
     }
 

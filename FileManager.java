@@ -1,8 +1,5 @@
 import javax.imageio.IIOException;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Scanner;
 
 public class FileManager {
@@ -46,7 +43,6 @@ public class FileManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }
