@@ -4,15 +4,13 @@ public class Livro extends Arte {
     //Atributos
     private String generoLiterario;
     private int numeroPaginas;
-    private double valorArte;
     private static ArrayList<Livro> listaLivros = new ArrayList<>();
 
     //Construtor
-    public Livro(String nome, Autor autor, int anoPublicacao, String generoLiterario, int numeroPaginas, double valorArte) {
+    public Livro(String nome, Autor autor, int anoPublicacao, String generoLiterario, int numeroPaginas, int valorArte) {
         super(nome, autor, anoPublicacao);
         this.generoLiterario = generoLiterario;
         this.numeroPaginas = numeroPaginas;
-        this.valorArte = valorArte;
         listaLivros.add(this);
     }
 
@@ -21,10 +19,6 @@ public class Livro extends Arte {
                 "\nGênero Literário: " + generoLiterario +
                 "\nNúmero de Páginas: " + numeroPaginas +
                 "\nValor do Livro: " + getValorArte();
-    }
-
-    public double getValorArte() {
-        return valorArte;
     }
 
     //Metodos

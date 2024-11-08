@@ -1,6 +1,8 @@
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable {
     //Atributos
     private String usuario;
     private String senha;
@@ -29,3 +31,4 @@ public abstract class Pessoa {
         playlist.remove(musica);
     }
 }
+

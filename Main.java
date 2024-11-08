@@ -1,14 +1,16 @@
 import javax.swing.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NotaNegativaException {
         SwingUtilities.invokeLater( () -> {
             InterfaceGrafica frame = new InterfaceGrafica();
             frame.setVisible(true);
         });
 
-        Livro livro1 = new Livro("Harry Potter", "JK", "mlk q quase morreu", 1997, "Ficção", 300, "Sinopse A", 39.90);
-        Livro livro2 = new Livro("IT", "Stephen King", "molecada ferrada com um et", 2014, "Terror", 250, "Sinopse B", 29.90);
+        Autor autor1 = new Autor("JorgeSegundo", "Jorge Segundo", "123", "Sim");
+
+        Livro livro1 = new Livro("Harry Potter", autor1, 1995, "Ficção", 300, 35);
+        Livro livro2 = new Livro("IT", autor1, 2014, "Sim", 300, 25);
 
         livro1.listarObras();
 
@@ -19,7 +21,7 @@ public class Main {
         System.out.println(livro1.mediaNota());
 
         try {
-            Musica musica1 = new Musica("Risk", "Deftones", "Musica Top", 2006, "NuMetal", 3, 40, "mp4");
+            Musica musica1 = new Musica("Risk", autor1, 18723, "Masculino", 15, "mp4");
         }
         catch (ExtensaoException e) {
             System.out.println(e.getMessage());

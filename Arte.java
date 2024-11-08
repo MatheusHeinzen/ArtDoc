@@ -6,6 +6,7 @@ public abstract class Arte {
     private Autor autor;
     private int anoPublicacao;
     private ArrayList<Integer> nota = new ArrayList<Integer>();
+    private int valorArte;
 
 
     //Construtor
@@ -33,6 +34,10 @@ public abstract class Arte {
     //Métodos
     public void adicionarNota(int avaliacao){
         nota.add(avaliacao);
+    }
+
+    public int getValorArte() {
+        return valorArte;
     }
 
     public double mediaNota() {
