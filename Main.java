@@ -12,7 +12,7 @@ public class Main {
         Livro livro1 = new Livro("Harry Potter", autor1, 1995, "Ficção", 300, 35);
         Livro livro2 = new Livro("IT", autor1, 2014, "Sim", 300, 25);
 
-        livro1.listarObras();
+        livro1.listarArtes();
 
         Critico c = new Critico("Jorge", "30/09", "M" , "123", "Confia");
 

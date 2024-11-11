@@ -3,19 +3,34 @@ import java.util.Scanner;
 
 public class Critico extends Pessoa{
     //Atributos
-    private String certificado;
+    private int numCertificado;
     private ArrayList<Arte> artesAvaliadas = new ArrayList<Arte>();
     private ArrayList<Autor> autoresAvaliados = new ArrayList<Autor>();
 
     //Construtor
-    public Critico(String usuario, String nomePessoa, String senha, String genero, String certificado) {
+    public Critico(String usuario, String senha, String nomePessoa, String genero, int numCertificado) {
         super(usuario, senha, nomePessoa, genero);
-        this.certificado = certificado;
+        this.numCertificado = numCertificado;
     }
 
-    //Métodos
+    //Métodos para ouvir musica e avaliar depois -- Metodo Sobrescrito.
+    @Override
+    public String ouvirMusica(Musica musica) {
+        Scanner sc = new Scanner(System.in);
+        int avaliacao = sc.nextInt();
+        try {
+            return "Cê tá ouvindo uma música daora!!! 🎶🎵🎶🎵 \n" +
+                "Mas musica também é arte, então avalia ela aí pra nx." +
+                "\n Qual a nota para essa música?" + avaliarArte(avaliacao, musica);}
+        catch (Exception e){
+            e.printStackTrace();
+            return " ";
+        }
+    }
+
+    //Métodos para avaliar Artes e Autores
     public String avaliarArte(int avaliacao, Arte arte)  throws NotaNegativaException {
-        arte.adicionarNota(avaliacao);
+        arte.adicionarNotaArte(avaliacao);
         if (avaliacao < 0) {
             throw new NotaNegativaException("Não é possível atribuir uma nota negativa para uma Arte.");
         }
@@ -23,25 +38,11 @@ public class Critico extends Pessoa{
         return "Arte avaliada.";
     }
     public String avaliarAutor(int avaliacao, Autor autor) throws NotaNegativaException{
-        autor.adicionarNota(avaliacao);
         if (avaliacao < 0) {
             throw new NotaNegativaException("Não é possível atribuir uma nota negativa para um Autor.");
         }
+        autor.adicionarNotaAutor(avaliacao);
         autoresAvaliados.add(autor);
         return "Autor avaliado.";
-    }
-
-    @Override
-    public void ouvirMusica(Musica musica) {
-        System.out.println("Cê tá ouvindo!!! 🎶🎵🎶🎵 \n Mas musica também é arte, então avalia ela aí pra nx.");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Qual a nota para essa música?");
-        int avaliacao = sc.nextInt();
-        try {
-            avaliarArte(avaliacao, musica);
-            artesAvaliadas.add(musica);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

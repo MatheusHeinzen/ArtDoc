@@ -8,7 +8,7 @@ public abstract class Pessoa implements Serializable {
     private String senha;
     private String nomePessoa;
     private String genero;
-    ArrayList<Arte> playlist = new ArrayList<>();
+    ArrayList<Musica> playlist = new ArrayList<>();
 
     //Construtor
     public Pessoa(String usuario, String nomePessoa, String senha, String genero){
@@ -18,17 +18,35 @@ public abstract class Pessoa implements Serializable {
         this.genero = genero;
     }
 
-    //Metodos
-    public void ouvirMusica(Musica musica) {
-        System.out.println("Cê tá ouvindo!!! 🎶🎵🎶🎵");
+    //Getters e Setters
+    public String getNomePessoa() {
+        return nomePessoa;
     }
 
-    public void adicionarNaPlaylist(Musica musica) {
-            playlist.add(musica);
+    //Metodos utilizando Musicas
+    public String ouvirMusica(Musica musica) {
+        return "Cê tá ouvindo uma música daora!!! 🎶🎵🎶🎵";
+    }
+    public String visualizarPlaylist() {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append("Lista de Musicas da Playlist:\n");
+        for (Musica musica : playlist) {
+            resultado.append(musica.toString()).append("\n");
+            resultado.append("---------------------------\n");
         }
-
+        return resultado.toString();
+    }
+    public String adicionarNaPlaylist(Musica musica) {
+        playlist.add(musica);
+        return "Musica adicionada na Playlist";
+    }
     public void retirarDaPlaylist(Musica musica) {
         playlist.remove(musica);
+    }
+
+    //Metodos utilizando Pinturas
+    public String admirarPintura() {
+        return "Nooossa! Que bela de uma pintura daora!!! 🤩🤩🤩";
     }
 }
 
