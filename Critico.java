@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Critico extends Pessoa{
     //Atributos
-    private int numCertificado;
+    private double numCertificado;
     private ArrayList<Arte> artesAvaliadas = new ArrayList<Arte>();
     private ArrayList<Autor> autoresAvaliados = new ArrayList<Autor>();
 
