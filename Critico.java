@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,15 +17,16 @@ public class Critico extends Pessoa{
     //Métodos para ouvir musica e avaliar depois -- Metodo Sobrescrito.
     @Override
     public String ouvirMusica(Musica musica) {
-        Scanner sc = new Scanner(System.in);
-        int avaliacao = sc.nextInt();
         try {
-            return "Cê tá ouvindo uma música daora!!! 🎶🎵🎶🎵 \n" +
-                "Mas musica também é arte, então avalia ela aí pra nx." +
-                "\n Qual a nota para essa música?" + avaliarArte(avaliacao, musica);}
+            JOptionPane.showMessageDialog(null, "Cê tá ouvindo uma música daora!!!🎶🎵🎶🎵 \nMas musica também é arte, então avalia ela aí pra nx. \nQual a nota para essa música?" , "Ouvindo Musica", JOptionPane.INFORMATION_MESSAGE);
+            Scanner sc = new Scanner(System.in);
+            int avaliacao = sc.nextInt();
+            sc.close();
+            return  avaliarArte(avaliacao, musica);
+            }
         catch (Exception e){
             e.printStackTrace();
-            return " ";
+            return "Não foi possível avaliar a Musica";
         }
     }
 

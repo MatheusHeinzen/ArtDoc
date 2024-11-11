@@ -1,14 +1,19 @@
 import javax.imageio.IIOException;
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileManager {
     private String caminhoArquivo;
+    String [][] lista = {};
 
+    //Construtor
     public FileManager(String caminhoArquivo) {
         this.caminhoArquivo = caminhoArquivo;
     }
 
+    //Metodos para leitura de arquvivos
     public void lerArquivoScanner() {
         File file = new File(caminhoArquivo);
         try {
@@ -38,13 +43,38 @@ public class FileManager {
             while (br.ready()) {
                 String dado = br.readLine();
                 String [] dadoSeparado = dado.split(",");
-                System.out.println(dadoSeparado);
+                List<String> dadoTratado = Arrays.asList(dadoSeparado);
+                System.out.println("ID" + dadoTratado.get(0));
+                System.out.println("Nome" + dadoTratado.get(1));
+                System.out.println("Praço" + dadoTratado.get(2));
             }
+            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public void escreverArquivo () {
+        File arquivo = new File (caminhoArquivo);
+        try {
+            FileWriter fileWriter = new FileWriter (arquivo, true);
+            for (String[] valor : lista) {
+                StringBuilder line = new StringBuilder();
+                for(int i=0; i < valor.length; i++){
+                    line.append(valor[i]);
+                    if (i != valor.length -1){
+                        line.append(',');
+                    }
+                }
+                line.append("\n");
+                fileWriter.append(line.toString());
+            }
+            fileWriter.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
