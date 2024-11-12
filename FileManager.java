@@ -1,5 +1,7 @@
 import javax.imageio.IIOException;
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -14,39 +16,70 @@ public class FileManager {
     }
 
     //Metodos para leitura de arquvivos
-    public void lerArquivoScanner() {
-        File file = new File(caminhoArquivo);
-        try {
-            Scanner scanner = new Scanner(file);
-            String cabecalho = scanner.nextLine();
-            System.out.println(cabecalho);
-            while (scanner.hasNextLine()) {
-                String dado = scanner.nextLine();
-                Scanner dadoSeparado = new Scanner(dado).useDelimiter(",");
-                System.out.println("ID" + dadoSeparado.nextInt());
-                System.out.println("Nome" + dadoSeparado.next());
-                System.out.println("Praço" + dadoSeparado.nextInt());
-                dadoSeparado.close();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void lerArquivoBufferedReader () {
+    public void lerArquivoPessoa () {
         try {
             FileReader arquivo = new FileReader(caminhoArquivo);
             BufferedReader br = new BufferedReader(arquivo);
             String cabecalho = br.readLine();
-            System.out.println(cabecalho);
-            br.close();
             while (br.ready()) {
                 String dado = br.readLine();
                 String [] dadoSeparado = dado.split(",");
                 List<String> dadoTratado = Arrays.asList(dadoSeparado);
-                System.out.println("ID" + dadoTratado.get(0));
-                System.out.println("Nome" + dadoTratado.get(1));
-                System.out.println("Praço" + dadoTratado.get(2));
+                // get(0) = tipo
+                // get(1) = usuario
+                // get(2) = senha
+                // get(3) = nomePessoa
+                // get(4) = genero
+                // get(5) = numCertificado ou Carteira
+                Pessoa novaPessoa;
+                switch (dadoTratado.get(0).toLowerCase()) {
+                    case "autor":
+                        novaPessoa = new Autor(dadoTratado.get(1),dadoTratado.get(2),dadoTratado.get(3),dadoTratado.get(4));
+                        break;
+                    case "comprador":
+                        double carteira = Double.parseDouble(dadoTratado.get(5));
+                        novaPessoa = new Comprador(dadoTratado.get(1),dadoTratado.get(2),dadoTratado.get(3),dadoTratado.get(4),carteira);
+                        break;
+                    case "critico":
+                        double numCertificado = Double.parseDouble(dadoTratado.get(5));
+                        novaPessoa = new Critico(dadoTratado.get(1),dadoTratado.get(2),dadoTratado.get(3),dadoTratado.get(4), (int) numCertificado);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Tipo de Pessoa não validado" + dadoTratado.get(0));
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void lerArquivoArte (ArrayList<Autor> listaAutores) {
+        try {
+            FileReader arquivo = new FileReader(caminhoArquivo);
+            BufferedReader br = new BufferedReader(arquivo);
+            String cabecalho = br.readLine();
+            while (br.ready()) {
+                String dado = br.readLine();
+                String[] dadoSeparado = dado.split(",");
+                List<String> dadoTratado = Arrays.asList(dadoSeparado);
+                // get(0) = tipo
+                // get(1) = nome da arte
+                // get(2) = autor (nome do autor)
+                // get(3) = anoPublicacao - int
+                // get(4) = valorArte - double
+                // get(5) = generoOuEstilo
+                // get(6) = extensao
+                //PROCURANDO O AUTOR
+                for (Autor autor : listaAutores) {
+                    if (autor.getNomePessoa().equalsIgnoreCase(dadoTratado.get(2))) {
+                        int anoPublicacao = Integer.parseInt(dadoTratado.get(3));
+                        double valorArte = Double.parseDouble(dadoTratado.get(4));
+                        autor.adicionarNovaArte(dadoTratado.get(0), dadoTratado.get(1), anoPublicacao, valorArte, dadoTratado.get(5), dadoTratado.get(6));
+                    } else {
+                        System.out.println("Autor não encontrado: " + dadoTratado.get(2));
+                    }
+                }
             }
             br.close();
         } catch (Exception e) {
@@ -78,5 +111,34 @@ public class FileManager {
 }
 
 
-// FileManager fm = new FileManager("./database/csv.csv");
-// fm.lerArquivoScanner();
+
+
+
+
+
+
+
+
+//METODO PARA LER ARQUIVOS SCANNER ENSINADO NA AULA .
+
+//public void lerArquivoScanner() {
+//    File file = new File(caminhoArquivo);
+//    try {
+//        Scanner scanner = new Scanner(file);
+//        String cabecalho = scanner.nextLine();
+//        System.out.println(cabecalho);
+//        while (scanner.hasNextLine()) {
+//            String dado = scanner.nextLine();
+//            Scanner dadoSeparado = new Scanner(dado).useDelimiter(",");
+//            System.out.println("ID" + dadoSeparado.nextInt());
+//            System.out.println("Nome" + dadoSeparado.next());
+//            System.out.println("Praço" + dadoSeparado.nextInt());
+//            dadoSeparado.close();
+//        }
+//    } catch (FileNotFoundException e) {
+//        e.printStackTrace();
+//    }
+//}
+
+// FileManager listaPessoas = new FileManager("./database/csv.csv");
+// listaPessoas.lerArquivoPessoa();

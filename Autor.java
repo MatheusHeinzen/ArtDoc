@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Autor extends Pessoa {
     //Atributos
@@ -6,10 +8,12 @@ public class Autor extends Pessoa {
     private double mediaMinhasNotas;
     private ArrayList<Arte> minhasArtes = new ArrayList<Arte>();
     private double mediaNotasMinhasArtes;
+    private ArrayList<Autor> listaAutores = new ArrayList<Autor>();
 
     //Construtor
     public Autor(String usuario, String senha, String nomePessoa, String genero) {
         super(usuario, senha, nomePessoa, genero);
+        listaAutores.add(this);
     }
 
     //Getters e Setters
@@ -23,6 +27,10 @@ public class Autor extends Pessoa {
     }
     public void setMediaNotasMinhasArtes(double mediaNotasArtes) {
         this.mediaNotasMinhasArtes = mediaNotasArtes;
+    }
+
+    public ArrayList<Autor> getListaAutores() {
+        return listaAutores;
     }
 
     //Metodos para adicionar e listar Obras
