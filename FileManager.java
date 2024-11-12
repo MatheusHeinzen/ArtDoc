@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class FileManager {
     private String caminhoArquivo;
-    String [][] lista = {};
+    String [][] lista = {}; // isso serve pra escrever num arquivo.
 
     //Construtor
     public FileManager(String caminhoArquivo) {
@@ -139,6 +139,8 @@ public class FileManager {
 //        e.printStackTrace();
 //    }
 //}
+
+
 
 // FileManager listaPessoas = new FileManager("./database/csv.csv");
 // listaPessoas.lerArquivoPessoa();
