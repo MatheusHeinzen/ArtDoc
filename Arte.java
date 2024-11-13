@@ -38,6 +38,14 @@ public abstract class Arte {
         return valorArte;
     }
 
+    public int getAnoPublicacao() {
+        return anoPublicacao;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
     //Métodos
     public void adicionarNota(int avaliacao){
         nota.add(avaliacao);
