@@ -79,8 +79,8 @@ public class Main extends JFrame {
             }
         });
     }
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         new Main();
 
         Scanner scanner = new Scanner(System.in);
@@ -101,28 +101,48 @@ public class Main extends JFrame {
             System.out.println("\n--- Obras do Autor ---");
             autor.listarMinhasArtes();
 
-        SwingUtilities.invokeLater( () -> {
-            InterfaceGrafica frame = new InterfaceGrafica();
-            frame.setVisible(true);
-        });
+            // Comprador adiciona saldo e tenta comprar uma arte
+            System.out.println("\n--- Comprador ---");
+            System.out.println(comprador.adicionarSaldo(500.0));
+            System.out.println("Saldo atual do comprador: R$ " + comprador.getSaldo());
+            System.out.println(comprador.comprarArte(livro)); // Compra com sucesso
+            System.out.println(comprador.comprarArte(pintura)); // Falta de saldo
 
-        Livro livro1 = new Livro("Harry Potter", "JK", "mlk q quase morreu", 1997, "Ficção", 300, "Sinopse A", 39.90);
-        Livro livro2 = new Livro("IT", "Stephen King", "molecada ferrada com um et", 2014, "Terror", 250, "Sinopse B", 29.90);
+            // Comprador adiciona a pintura na lista de desejos e vê a lista
+            comprador.adicionarNaMinhaListaDeDesejos(pintura);
+            System.out.println("\n--- Lista de Desejos do Comprador ---");
+            comprador.verMinhaListaDeDesejos();
 
-        livro1.listarObras();
+            // Critico avalia a arte e o autor
+            System.out.println("\n--- Crítico Avaliando Arte e Autor ---");
+            System.out.print("Digite uma nota para a arte (Guernica): ");
+            int notaArte = scanner.nextInt();
+            System.out.println(critico.avaliarArte(notaArte, pintura));
 
-        Critico c = new Critico("Jorge", "30/09", "M" , "123", "Confia");
+            System.out.print("Digite uma nota para o autor (Pablo Picasso): ");
+            int notaAutor = scanner.nextInt();
+            System.out.println(critico.avaliarAutor(notaAutor, autor));
 
-        c.avaliarArte(5, livro1);
-        c.avaliarArte(0, livro1);
-        System.out.println(livro1.mediaNota());
+            // Crítico ouve uma música e adiciona à sua playlist
+            System.out.println("\n--- Crítico Ouve Música ---");
+            System.out.println(critico.ouvirMusica((Musica) musica));
+            System.out.println(critico.adicionarNaPlaylist((Musica) musica));
+            System.out.println("\n--- Playlist do Crítico ---");
+            System.out.println(critico.visualizarPlaylist());
 
-        try {
-            Musica musica1 = new Musica("Risk", "Deftones", "Musica Top", 2006, "NuMetal", 3, 40, "mp4");
+            // Calculando médias de notas do autor e das suas obras
+            System.out.println("\n--- Médias de Notas ---");
+            System.out.println("Média das notas do autor: " + autor.calcularMediaMinhasNotas());
+            System.out.println("Média das notas das obras do autor: " + autor.calcularMediaNotasMinhasArtes());
+
+        } catch (ExtensaoException e) {
+            System.out.println("Erro: Extensão de música inválida.");
+        } catch (NotaNegativaException e) {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            scanner.close();
         }
-        catch (ExtensaoException e) {
-            System.out.println(e.getMessage());
-        }
-
     }
 }
