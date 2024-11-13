@@ -1,15 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.TimerTask;
 
 public class InterfaceGrafica extends JFrame {
-    //Telas
+    // Telas
     private JPanel telaLogo;
     private JPanel telaInicial;
     private JPanel telaCadastro;
     private JPanel telaLogin;
+    private JPanel telaMenu;
+    private JPanel telaAdicionarFundos;
+    public Pessoa novoUsuario;
 
-    //Construtor
+    // Construtor
     public InterfaceGrafica() {
         setTitle("ArtDoc");
         setSize(1000, 500);
@@ -20,6 +22,8 @@ public class InterfaceGrafica extends JFrame {
         telaInicial = criarTelaInicial();
         telaCadastro = criarTelaCadastro();
         telaLogin = criarTelaLogin();
+        telaMenu = criarTelaMenu();
+        telaAdicionarFundos = criarTelaAdicionarFundos();
 
         add(telaLogo);
     }
@@ -31,7 +35,7 @@ public class InterfaceGrafica extends JFrame {
 
         panelLogo.setLayout(new BoxLayout(panelLogo, BoxLayout.Y_AXIS));
         Icon logo = new ImageIcon("ARTDOC.png");
-        JLabel labelLogo = new JLabel("" , logo, SwingConstants.CENTER );
+        JLabel labelLogo = new JLabel("", logo, SwingConstants.CENTER);
         panelLogo.add(labelLogo);
 
         JButton botaoContinuar = new JButton("Entrar");
@@ -53,7 +57,7 @@ public class InterfaceGrafica extends JFrame {
         return panel;
     }
 
-    //Tela Inicial
+    // Tela Inicial
     private JPanel criarTelaInicial() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -62,7 +66,7 @@ public class InterfaceGrafica extends JFrame {
         mensagem.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(mensagem);
 
-        //Botões
+        // Botões
         JPanel botoesPanel = new JPanel();
         JButton botaoSim = new JButton("Sim");
         JButton botaoNao = new JButton("Não");
@@ -95,29 +99,43 @@ public class InterfaceGrafica extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        //Campos
+        // Campos
         JLabel labelNome = new JLabel("Nome:");
         JTextField campoNome = new JTextField(15);
         JLabel labelDataNasc = new JLabel("Data de Nascimento:");
         JTextField campoDataNasc = new JTextField(10);
-        JLabel labelGenero = new JLabel("Gênero:");
-        JTextField campoGenero = new JTextField(10);
         JLabel labelSenha = new JLabel("Senha:");
         JPasswordField campoSenha = new JPasswordField(15);
         JLabel labelTipo = new JLabel("Tipo:");
 
-        //DropList
+        // DropList
         String[] tipos = {"Autor", "Crítico", "Comprador"};
         JComboBox<String> tipoDropDown = new JComboBox<>(tipos);
 
         JButton botaoCadastrar = new JButton("Cadastrar");
 
+        botaoCadastrar.addActionListener(e -> {
+            if (tipoDropDown.getSelectedItem().equals("Autor")) {
+                novoUsuario = new Autor(campoNome.getText(), campoDataNasc.getText(), new String(campoSenha.getPassword()));
+                remove(telaCadastro);
+                add(telaMenu);
+            } else if (tipoDropDown.getSelectedItem().equals("Crítico")) {
+                novoUsuario = new Critico(campoNome.getText(), campoDataNasc.getText(), new String(campoSenha.getPassword()));
+                remove(telaCadastro);
+                add(telaMenu);
+            } else if (tipoDropDown.getSelectedItem().equals("Comprador")) {
+                novoUsuario = new Comprador(campoNome.getText(), campoDataNasc.getText(), new String(campoSenha.getPassword()));
+                remove(telaCadastro);
+                add(telaAdicionarFundos);
+            }
+            revalidate();
+            repaint();
+        });
+
         panel.add(labelNome);
         panel.add(campoNome);
         panel.add(labelDataNasc);
         panel.add(campoDataNasc);
-        panel.add(labelGenero);
-        panel.add(campoGenero);
         panel.add(labelSenha);
         panel.add(campoSenha);
         panel.add(labelTipo);
@@ -132,7 +150,7 @@ public class InterfaceGrafica extends JFrame {
         return panel;
     }
 
-    //Tela de Login
+    // Tela de Login
     private JPanel criarTelaLogin() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -151,6 +169,51 @@ public class InterfaceGrafica extends JFrame {
         panel.add(Box.createVerticalStrut(20));
         panel.add(botaoLogin);
 
+        for (Component comp : panel.getComponents()) {
+            ((JComponent) comp).setAlignmentX(Component.CENTER_ALIGNMENT);
+        }
+
+        return panel;
+    }
+
+    private JPanel criarTelaMenu() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel labelTeste = new JLabel(String.valueOf(novoUsuario.getCarteira()));
+
+        return panel;
+    }
+
+    private JPanel criarTelaAdicionarFundos() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel labelCarteira = new JLabel("Quanto quer adicionar?");
+        JTextField campoCarteira = new JTextField(15);
+        JButton botaoConfirmar = new JButton("Confirmar");
+
+        botaoConfirmar.addActionListener(e -> {
+            try {
+                int carteira = Integer.parseInt(campoCarteira.getText());
+                if (novoUsuario != null) {
+                    novoUsuario.setCarteira(carteira);
+                } else {
+                    System.out.println("Usuário não encontrado.");
+                }
+                remove(telaAdicionarFundos);
+                add(telaMenu);
+                revalidate();
+                repaint();
+            } catch (NumberFormatException ex) {
+                System.out.println("Valor não é um número inteiro.");
+            }
+        });
+
+        panel.add(labelCarteira);
+        panel.add(campoCarteira);
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(botaoConfirmar);
 
         for (Component comp : panel.getComponents()) {
             ((JComponent) comp).setAlignmentX(Component.CENTER_ALIGNMENT);
