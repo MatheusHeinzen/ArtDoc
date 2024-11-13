@@ -3,17 +3,16 @@ import java.util.ArrayList;
 public abstract class Arte {
     //Atributos
     private String nomeArte;
-    private String autor;
-    private String descricao;
-    private ArrayList<Integer> nota = new ArrayList<Integer>();
+    private Autor autor;
     private int anoPublicacao;
     private double valorArte;
+    private ArrayList<Integer> notasArte = new ArrayList<Integer>();
+    private double mediaNotasArte;
 
     //Construtor
-    public Arte(String nome, String autor, String descricao, int anoPublicacao, double valorArte){
+    public Arte(String nome, Autor autor, int anoPublicacao, double valorArte){
         this.nomeArte = nome;
         this.autor = autor;
-        this.descricao = descricao;
         this.anoPublicacao  = anoPublicacao;
         this.valorArte = valorArte;
     }
@@ -21,41 +20,35 @@ public abstract class Arte {
     //To String
     public String toString() {
         return "Nome: " + nomeArte +
-                "\nAutor: " + autor +
-                "\nDescrição: " + descricao +
+                "\nAutor: " + autor.getNomePessoa() +
                 "\nAno de Publicação: " + anoPublicacao;
     }
 
     //Metodo Abstrato
-    public abstract void listarObras();
+    public abstract String listarArtes();
 
     //Getters e Setters
     public String getNomeArte() {
         return nomeArte;
     }
-
     public double getValorArte() {
         return valorArte;
     }
-
-    public int getAnoPublicacao() {
-        return anoPublicacao;
+    public void setMediaNotasArte(double mediaNotasArte) {
+        this.mediaNotasArte = mediaNotasArte;
     }
 
-    public String getAutor() {
-        return autor;
+    //Métodos adicionando notas na Arte e calculando a Media das Notas.
+    public void adicionarNotaArte(int avaliacao){
+        notasArte.add(avaliacao);
     }
-
-    //Métodos
-    public void adicionarNota(int avaliacao){
-        nota.add(avaliacao);
-    }
-
-    public double mediaNota() {
-        double somaNota = 0.0;
-        for (int i : nota){
-            somaNota += i;
+    public double calcularMediaNotasArte() {
+        double somaNotas = 0.0;
+        for (int i : notasArte){
+            somaNotas += i;
         }
-        return somaNota/nota.size();
+        double resultado = somaNotas/notasArte.size();
+        setMediaNotasArte(resultado);
+        return mediaNotasArte;
     }
 }

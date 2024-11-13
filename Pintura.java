@@ -1,20 +1,32 @@
+import java.util.ArrayList;
+
 public class Pintura extends Arte {
     //Atributos
-    private String traco;
-    private String dimensao;
+    private String estilo;
+    private static ArrayList<Pintura> colecao = new ArrayList<>();
 
     //Construtor
-    public Pintura(String nome, String autor, String descricao, int anoPublicacao, String dimensao, double valorArte) {
-        super(nome, autor, descricao, anoPublicacao, valorArte);
-        this.traco = traco;
-        this.dimensao = dimensao;
+    public Pintura(String nome, Autor autor, int anoPublicacao, double valorArte, String estilo) {
+        super(nome, autor, anoPublicacao, valorArte);
+        this.estilo = estilo;
+        colecao.add(this);
     }
 
-    //Métodos
-    public void listarObras(){
-
+    //To String
+    public String toString() {
+        return super.toString() +
+                "\nEstilo de Pintura: " + estilo +
+                "\nValor da Musica: " + getValorArte();
     }
-    public void visualizarArte(){
 
+    //Metodo Abstrato Implementado
+    public String listarArtes() {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append("Lista de Todos as Pinturas:\n");
+        for (Pintura pintura : colecao) {
+            resultado.append(pintura.toString()).append("\n");
+            resultado.append("---------------------------\n");
+        }
+        return resultado.toString();
     }
 }

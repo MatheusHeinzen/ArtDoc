@@ -1,8 +1,5 @@
 public class NotaNegativaException extends Exception {
-    public NotaNegativaException(String mensage) {
-        super(mensage);
+    public NotaNegativaException(String message) {
+        super(message);
     }
 }
-
-
-// colocar erro no metodo de atribuir nota >>> não esquecer

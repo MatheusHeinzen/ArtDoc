@@ -1,21 +1,52 @@
-public abstract class Pessoa {
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Pessoa implements Serializable {
     //Atributos
-    private String nomePessoa;
-    private String dataNascimento;
+    private String usuario;
     private String senha;
+    private String nomePessoa;
+    private String genero;
+    ArrayList<Musica> playlist = new ArrayList<>();
 
     //Construtor
-    public Pessoa(String nomePessoa, String dataNascimento, String senha){
-        this.nomePessoa = nomePessoa;
-        this.dataNascimento = dataNascimento;
+    public Pessoa(String usuario, String nomePessoa, String senha, String genero){
+        this.usuario = usuario;
         this.senha = senha;
+        this.nomePessoa = nomePessoa;
+        this.genero = genero;
     }
 
-    public void ouvirMusica(Musica musica){
-        System.out.println("🎶🎵🎶🎵");
+    //Getters e Setters
+    public String getNomePessoa() {
+        return nomePessoa;
     }
 
-    public abstract void setCarteira(int carteira);
+    //Metodos utilizando Musicas
+    public String ouvirMusica(Musica musica) {
+        return "Cê tá ouvindo uma música daora!!! 🎶🎵🎶🎵";
+    }
+    public String visualizarPlaylist() {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append("Lista de Musicas da Playlist:\n");
+        for (Musica musica : playlist) {
+            resultado.append(musica.toString()).append("\n");
+            resultado.append("---------------------------\n");
+        }
+        return resultado.toString();
+    }
+    public String adicionarNaPlaylist(Musica musica) {
+        playlist.add(musica);
+        return "Musica adicionada na Playlist";
+    }
+    public void retirarDaPlaylist(Musica musica) {
+        playlist.remove(musica);
+    }
 
-    public abstract int getCarteira();
+    //Metodos utilizando Pinturas
+    public String admirarPintura() {
+        return "Nooossa! Que bela de uma pintura daora!!! 🤩🤩🤩";
+    }
 }
+

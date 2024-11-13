@@ -1,18 +1,36 @@
-public class Musica extends Arte {
-    private String estilo;
-    private double duracao;
-    private String extensao;
+import java.util.ArrayList;
 
-    public Musica(String nome, String autor, String descricao, int anoPublicacao, String estilo, double duracao, double valorArte, String extensao) throws ExtensaoException {
-        super(nome, autor, descricao, anoPublicacao, valorArte);
-        this.estilo = estilo;
-        this.duracao = duracao;
+public class Musica extends Arte {
+    private String generoMusical;
+    private String extensao;
+    private static ArrayList<Musica> coletanea = new ArrayList<>();
+
+    public Musica(String nome, Autor autor, int anoPublicacao, double valorArte, String generoMusical, String extensao) throws ExtensaoException {
+        super(nome, autor, anoPublicacao, valorArte);
+        this.generoMusical = generoMusical;
         this.extensao = extensao;
         if (!"mp3".equals(extensao)) {
-            throw new ExtensaoException("Arquivo não suportado. O programa aceita apenas mp3.");
+            throw new ExtensaoException();
         }
+        coletanea.add(this);
     }
 
-    public void listarObras(){
+    //To String
+    public String toString() {
+        return super.toString() +
+                "\nGênero Musical: " + generoMusical +
+                "\nValor da Musica: " + getValorArte();
+    }
+
+    //Metodo Abstrato Implementado
+    public String listarArtes() {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append("Lista de Todos as Musicas:\n");
+        for (Musica musica : coletanea) {
+            resultado.append(musica.toString()).append("\n");
+            resultado.append("---------------------------\n");
+        }
+        return resultado.toString();
     }
 }
+
