@@ -44,10 +44,41 @@
 //    }
 //}
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
 
-public class Main {
+public class Main extends JFrame {
+    private JButton entrarButton;
+    private JPanel panel;
+    private JButton cadastrarButton;
+
+    public Main() {
+        setContentPane(panel);
+        setTitle("ArtDoc");
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        entrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Login();
+                Main.this.dispose();
+            }
+        });
+
+        cadastrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Cadastrar();
+                Main.this.dispose();
+            }
+        });
+    }
     public static void main(String[] args) {
+        new Main();
+
         Scanner scanner = new Scanner(System.in);
 
         try {
