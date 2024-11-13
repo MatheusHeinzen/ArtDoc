@@ -1,3 +1,4 @@
+
 //public class Main {
 //    public static void main(String[] args) {
 //        try {
@@ -49,6 +50,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
+import javax.swing.*;
+
 public class Main extends JFrame {
     private JButton entrarButton;
     private JPanel panel;
@@ -76,6 +79,7 @@ public class Main extends JFrame {
             }
         });
     }
+
     public static void main(String[] args) {
         new Main();
 
