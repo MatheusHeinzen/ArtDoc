@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
-
     private JPanel panel2;
     private JButton loginButton;
     private JTextField usuarioLogin;

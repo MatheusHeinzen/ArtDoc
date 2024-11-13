@@ -28,8 +28,9 @@ public class Musicas extends JFrame{
 
         livrosButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new VisualizarUmaArte(new Livro("IT - A Coisa", "Stephen King", "molecada ferrada com um et", 2014, "Terror", 250, "Sinopse B", 29.90));
+            public void actionPerformed(ActionEvent e){
+                new Livros();
+                Musicas.this.dispose();
             }
         });
 

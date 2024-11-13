@@ -3,8 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Cadastrar extends JFrame{
-
-
     private JPanel panel4;
     private JTextField criarUsuario;
     private JTextField criarNome;

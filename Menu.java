@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Menu extends JFrame {
-
     private JPanel panel3;
     private JButton musicasButton;
     private JButton livrosButton;
@@ -31,7 +30,8 @@ public class Menu extends JFrame {
         livrosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new VisualizarUmaArte(new Livro("IT - A Coisa", "Stephen King", "molecada ferrada com um et", 2014, "Terror", 250, "Sinopse B", 29.90));
+                new Livros();
+                Menu.this.dispose();
             }
         });
 

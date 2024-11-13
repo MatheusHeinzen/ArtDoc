@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Pinturas extends JFrame{
+public class Pinturas extends JFrame {
     private JPanel panel7;
     private JButton livrosButton;
     private JButton pinturasButton;
@@ -29,7 +29,8 @@ public class Pinturas extends JFrame{
         livrosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new VisualizarUmaArte(new Livro("IT - A Coisa", "Stephen King", "molecada ferrada com um et", 2014, "Terror", 250, "Sinopse B", 29.90));
+                new Pinturas();
+                Pinturas.this.dispose();
             }
         });
 
@@ -40,4 +41,5 @@ public class Pinturas extends JFrame{
                 Pinturas.this.dispose();
             }
         });
-    }}
+    }
+}
