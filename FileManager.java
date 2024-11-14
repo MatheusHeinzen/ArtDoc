@@ -108,6 +108,19 @@ public class FileManager {
             e.printStackTrace();
         }
     }
+
+    public void salvarArquivoPessoa(ArrayList<Pessoa> listaPessoas) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo))) {
+            for (Pessoa pessoa : listaPessoas) {
+                bw.write(pessoa.toCSV()); // toCSV() deve converter Pessoa para formato CSV
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+
+
+        }
+    }
 }
 
 

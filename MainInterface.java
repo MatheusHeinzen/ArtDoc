@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainInterface extends JFrame {
@@ -67,4 +69,59 @@ public class MainInterface extends JFrame {
 
         autor.listarMinhasArtes();
     }
+
+
+
+    public class Main {
+        public static Pessoa usuarioLogado;
+
+        private static ArrayList<Autor> listaAutores;
+        private static ArrayList<Arte> listaArtes;
+
+        public static List<Pessoa> listaPessoas = new ArrayList<>();
+
+
+
+        public static void main(String[] args) {
+            // Carrega os dados do arquivo
+            FileManager fileManagerPessoas = new FileManager("./database/pessoas.csv");
+            FileManager fileManagerArtes = new FileManager("./database/artes.csv");
+            fileManagerPessoas.lerArquivoPessoa();
+
+            // Inicializa a lista de autores a partir das pessoas carregadas
+            listaAutores = new ArrayList<>();
+            for (Pessoa pessoa : listaPessoas) {
+                if (pessoa instanceof Autor) {
+                    listaAutores.add((Autor) pessoa);
+                }
+            }
+
+            fileManagerArtes.lerArquivoArte(listaAutores);
+
+            // Inicia a interface gráfica
+            SwingUtilities.invokeLater(() -> new MainInterface());
+
+
+        }
+
+        public static void setUsuarioLogado(Pessoa usuario) {
+            usuarioLogado = usuario;
+        }
+        public static Pessoa getUsuarioLogado() {
+            return usuarioLogado;
+        }
+
+        public static boolean autenticarUsuario(String usuario, String senha) {
+            for (Pessoa pessoa : listaPessoas) {
+                if (pessoa.getNomeUsuario().equals(usuario) && pessoa.getSenha().equals(senha)) {
+                    usuarioLogado = pessoa;
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+
+
 }
