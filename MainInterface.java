@@ -47,19 +47,19 @@ public class MainInterface extends JFrame {
         }
     }
 
-    private static Autor criarAutor() {
+    public static Autor criarAutor() {
         return new Autor("autor01", "Pablo Picasso", "Pablo Picasso", "Masculino");
     }
 
-    private static Comprador criarComprador() {
+    public static Comprador criarComprador() {
         return new Comprador("comprador01", "Vincent van Gogh", "Vincent van Gogh", "Masculino", 1500.0);
     }
 
-    private static Critico criarCritico() {
+    public static Critico criarCritico() {
         return new Critico("critico01", "Leonardo da Vinc", "Leonardo da Vinci", "Masculino", 12345);
     }
 
-    private static void criarEListarObras(Autor autor) throws ExtensaoException {
+    public static void criarEListarObras(Autor autor) throws ExtensaoException {
         System.out.println("\n--- Adicionando e Listando Obras ---");
         Arte livro = autor.adicionarNovaArte("livro", "Dom Quixote", 1605, 300.0, "Romance", null);
         Arte musica = autor.adicionarNovaArte("musica", "Bohemian Rhapsody", 1975, 150.0, "Rock", "mp3");

@@ -9,7 +9,7 @@ public class Livros extends JFrame {
     private JButton minhasObrasButton;
     private JButton musicasButton;
     private JButton coringa;
-    private JList list1;
+    private JList listArtes;
 
     public Livros() {
         setContentPane(panel6);
@@ -17,6 +17,19 @@ public class Livros extends JFrame {
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
+
+        DefaultListModel<Arte> model = new DefaultListModel<>();
+        model.addAll(Livro.getBiblioteca());
+        listArtes.setModel(model);
+
+        listArtes.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                Arte arteSelecionada = (Arte) listArtes.getSelectedValue();
+                if (arteSelecionada != null) {
+                    new VisualizarUmaArte(arteSelecionada);
+                }
+            }
+        });
 
         musicasButton.addActionListener(new ActionListener() {
             @Override
@@ -49,5 +62,24 @@ public class Livros extends JFrame {
                 Livros.this.dispose();
             }
         });
+
+        Pessoa usuarioLogado = Main.getUsuarioLogado();
+
+        if (usuarioLogado instanceof Comprador) {
+            coringa.setText("Saldo do Comprador");
+            coringa.addActionListener(e -> {
+                JOptionPane.showMessageDialog(this, "Saldo disponível: " + ((Comprador) usuarioLogado).getSaldo());
+            });
+        } else if (usuarioLogado instanceof Autor) {
+            coringa.setText("Avaliações do Autor");
+            coringa.addActionListener(e -> {
+                JOptionPane.showMessageDialog(this, "Sua média de avaliações é: " + ((Autor) usuarioLogado).getMediaMinhasNotas());
+            });
+        } else if (usuarioLogado instanceof Critico) {
+            coringa.setText("Avaliar um Autor");
+            coringa.addActionListener(e -> {
+                JOptionPane.showMessageDialog(this, "Função para avaliar um autor será aqui.");
+            });
+        }
     }
 }

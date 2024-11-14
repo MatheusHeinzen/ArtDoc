@@ -18,13 +18,13 @@ public class Main {
     public static boolean autenticarUsuario(String usuario, String senha) {
         // Exemplo de autenticação (substitua com lógica real, como buscar no banco de dados)
         if (usuario.equals("comprador") && senha.equals("123")) {
-            usuarioLogado = new Comprador("comprador", "123", "Nome do Comprador", "M", 100.0);
+            usuarioLogado = MainInterface.criarComprador();
             return true;
         } else if (usuario.equals("autor") && senha.equals("123")) {
-            usuarioLogado = new Autor("autor", "123", "Nome do Autor", "F");
+            usuarioLogado = MainInterface.criarAutor();
             return true;
         } else if (usuario.equals("critico") && senha.equals("123")) {
-            usuarioLogado = new Critico("critico", "123", "Nome do Crítico", "M", 12345);
+            usuarioLogado = MainInterface.criarCritico();
             return true;
         }
         return false;

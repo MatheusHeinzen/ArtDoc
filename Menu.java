@@ -34,6 +34,34 @@ public class Menu extends JFrame {
             }
         });
 
+        musicasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Musicas();
+            }
+        });
+
+        livrosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                new Livros();
+            }
+        });
+
+        pinturasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Pinturas();
+            }
+        });
+
+        minhasObrasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MinhasObras();
+            }
+        });
+
         // Configuração do botão coringa baseado no tipo de usuário logado
         Pessoa usuarioLogado = Main.getUsuarioLogado();
 

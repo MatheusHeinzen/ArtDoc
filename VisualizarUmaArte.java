@@ -83,6 +83,7 @@ public class VisualizarUmaArte extends JFrame {
                 add(confirmarButton);
             }else {
                 JOptionPane.showMessageDialog(parent, "Você não é um crítico.");
+                parent.dispose();
             }
         }
     }
