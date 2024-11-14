@@ -81,6 +81,7 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
+<<<<<<< Updated upstream
         new Main();
 
         Scanner scanner = new Scanner(System.in);
@@ -146,3 +147,52 @@ public class Main extends JFrame {
         }
     }
 }
+=======
+        SwingUtilities.invokeLater(() -> new MainInterface());
+
+        // Carrega a lista de pessoas a partir do CSV
+        FileManager listaPessoas = new FileManager("./database/pessoas.csv");
+        ArrayList<Pessoa> pessoas = listaPessoas.lerArquivoPessoa();
+
+        // Carrega as artes após inicializar autores (supondo que seja necessário)
+        ArrayList<Autor> listaAutoresAtualizada = new ArrayList<>();
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa instanceof Autor) {
+                listaAutoresAtualizada.add((Autor) pessoa);
+            }
+        }
+        FileManager listaArtes = new FileManager("./database/artes.csv");
+        listaArtes.lerArquivoArte(listaAutoresAtualizada);
+    }
+
+    public static void setUsuarioLogado(Pessoa usuario) {
+        usuarioLogado = usuario;
+    }
+
+    public static Pessoa getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
+    public static boolean autenticarUsuario(String usuario, String senha) {
+        // Carrega a lista de pessoas para autenticação
+        FileManager listaPessoas = new FileManager("./database/pessoas.csv");
+        ArrayList<Pessoa> pessoas = listaPessoas.lerArquivoPessoa();
+
+        // Procura por uma correspondência de usuário e senha
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa.getUsuario().equals(usuario) && pessoa.getSenha().equals(senha)) {
+                // Verifica o tipo de pessoa e instancia a subclasse correta
+                if (pessoa instanceof Autor) {
+                    usuarioLogado = new Autor(pessoa.getUsuario(), pessoa.getSenha(), pessoa.getNome(), pessoa.getGenero());
+                } else if (pessoa instanceof Comprador) {
+                    usuarioLogado = new Comprador(pessoa.getUsuario(), pessoa.getSenha(), pessoa.getNome(), pessoa.getGenero(), pessoa.getCarteira());
+                } else if (pessoa instanceof Critico) {
+                    usuarioLogado = new Critico(pessoa.getUsuario(), pessoa.getSenha(), pessoa.getNome(), pessoa.getGenero(), pessoa.getNumCertificado());
+                }
+                return true;
+            }
+        }
+        return false; // Retorna falso se não encontrar uma correspondência
+    }
+}
+>>>>>>> Stashed changes

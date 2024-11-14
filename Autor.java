@@ -16,6 +16,16 @@ public class Autor extends Pessoa {
         listaAutores.add(this);
     }
 
+    @Override
+    public double getCarteira() {
+        return 0;
+    }
+
+    @Override
+    public int getNumCertificado() {
+        return 0;
+    }
+
     //Getters e Setters
     public void listarMinhasArtes(){
         for (Arte arte : minhasArtes){

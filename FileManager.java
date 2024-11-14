@@ -1,10 +1,7 @@
-import javax.imageio.IIOException;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class FileManager {
     private String caminhoArquivo;
@@ -16,42 +13,44 @@ public class FileManager {
     }
 
     //Metodos para leitura de arquvivos
-    public void lerArquivoPessoa () {
+    public ArrayList<Pessoa> lerArquivoPessoa() {
+        ArrayList<Pessoa> pessoas = new ArrayList<>(); // Lista para armazenar todas as pessoas
+
         try {
             FileReader arquivo = new FileReader(caminhoArquivo);
             BufferedReader br = new BufferedReader(arquivo);
-            String cabecalho = br.readLine();
+            String cabecalho = br.readLine(); // Lê o cabeçalho e ignora
+
             while (br.ready()) {
                 String dado = br.readLine();
-                String [] dadoSeparado = dado.split(",");
+                String[] dadoSeparado = dado.split(",");
                 List<String> dadoTratado = Arrays.asList(dadoSeparado);
-                // get(0) = tipo
-                // get(1) = usuario
-                // get(2) = senha
-                // get(3) = nomePessoa
-                // get(4) = genero
-                // get(5) = numCertificado ou Carteira
+
                 Pessoa novaPessoa;
                 switch (dadoTratado.get(0).toLowerCase()) {
                     case "autor":
-                        novaPessoa = new Autor(dadoTratado.get(1),dadoTratado.get(2),dadoTratado.get(3),dadoTratado.get(4));
+                        novaPessoa = new Autor(dadoTratado.get(1), dadoTratado.get(2), dadoTratado.get(3), dadoTratado.get(4));
                         break;
                     case "comprador":
                         double carteira = Double.parseDouble(dadoTratado.get(5));
-                        novaPessoa = new Comprador(dadoTratado.get(1),dadoTratado.get(2),dadoTratado.get(3),dadoTratado.get(4),carteira);
+                        novaPessoa = new Comprador(dadoTratado.get(1), dadoTratado.get(2), dadoTratado.get(3), dadoTratado.get(4), carteira);
                         break;
                     case "critico":
-                        double numCertificado = Double.parseDouble(dadoTratado.get(5));
-                        novaPessoa = new Critico(dadoTratado.get(1),dadoTratado.get(2),dadoTratado.get(3),dadoTratado.get(4), (int) numCertificado);
+                        int numCertificado = Integer.parseInt(dadoTratado.get(5));
+                        novaPessoa = new Critico(dadoTratado.get(1), dadoTratado.get(2), dadoTratado.get(3), dadoTratado.get(4), numCertificado);
                         break;
                     default:
-                        throw new IllegalArgumentException("Tipo de Pessoa não validado" + dadoTratado.get(0));
+                        throw new IllegalArgumentException("Tipo de Pessoa não validado: " + dadoTratado.get(0));
                 }
+
+                pessoas.add(novaPessoa); // Adiciona a nova pessoa à lista
             }
             br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return pessoas; // Retorna a lista de pessoas
     }
 
     public void lerArquivoArte (ArrayList<Autor> listaAutores) {
