@@ -36,7 +36,7 @@ public class Autor extends Pessoa {
     }
 
     @Override
-    public double getCarteira() {
+    public int getCarteira() {
         return 0;
     }
     @Override

@@ -18,8 +18,8 @@ public class Critico extends Pessoa{
         return numCertificado;
     }
     @Override
-    public double getCarteira() {
-        return 0.0;
+    public int getCarteira() {
+        return 0;
     }
 
     //Métodos para ouvir musica e avaliar depois -- Metodo Sobrescrito.

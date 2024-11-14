@@ -37,7 +37,9 @@ public abstract class Pessoa implements Serializable {
     public String getGenero() {
         return genero;
     }
-    public abstract double getCarteira();
+
+    public abstract int getCarteira();
+
     public abstract int getNumCertificado();
 
 
@@ -77,11 +79,5 @@ public abstract class Pessoa implements Serializable {
     public abstract String toCSV();
 
 
-    public String getNomeUsuario() {
-        return getNomeUsuario();
-    }
 
-    public String getSenha() {
-        return getSenha();
-    }
 }

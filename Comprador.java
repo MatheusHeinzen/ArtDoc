@@ -25,8 +25,8 @@ public class Comprador extends Pessoa{
             System.out.println(arte.getNomeArte());
         }
     }
-    @Override
-    public double getCarteira() {
+
+    public int getCarteira(){
         return carteira;
     }
     @Override
