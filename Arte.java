@@ -50,6 +50,7 @@ public abstract class Arte {
     public void adicionarNotaArte(int avaliacao){
         notasArte.add(avaliacao);
     }
+
     public double calcularMediaNotasArte() {
         double somaNotas = 0.0;
         for (int i : notasArte){
