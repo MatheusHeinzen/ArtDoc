@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersistenciaArquivo implements Serializable  {
+public class PersistenciaArquivo {
     private static final String NOME_ARQUIVO = "pessoas.dat";
 
     // Método para salvar a lista de pessoas

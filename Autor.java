@@ -94,4 +94,8 @@ public class Autor extends Pessoa {
     public <T> ArrayList<Arte> getMinhasArtes() {
         return minhasArtes;
     }
+
+    public String toCSV() {
+        return "autor" + "," + gettoCSV();
+    }
 }

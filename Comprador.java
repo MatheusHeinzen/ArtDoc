@@ -53,4 +53,7 @@ public class Comprador extends Pessoa{
                     "\n Seu saldo atual é de R$ " + getSaldo();
         }
     }
+    public String toCSV() {
+        return "comprador" + "," + gettoCSV();
+    }
 }

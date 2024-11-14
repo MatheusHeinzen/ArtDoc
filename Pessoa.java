@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Pessoa implements Serializable {
     //Atributos
@@ -9,6 +8,7 @@ public abstract class Pessoa implements Serializable {
     private String nomePessoa;
     private String genero;
     private ArrayList<Musica> playlist = new ArrayList<>();
+
 
     //Construtor
     public Pessoa(String usuario, String senha, String nomePessoa, String genero){
@@ -68,5 +68,20 @@ public abstract class Pessoa implements Serializable {
     //Metodos utilizando Pinturas
     public String admirarPintura() {
         return "Nooossa! Que bela de uma pintura daora!!! 🤩🤩🤩";
+    }
+
+    public String gettoCSV() {
+        return usuario + "," + senha + "," + nomePessoa + "," + genero;
+    }
+
+    public abstract String toCSV();
+
+
+    public String getNomeUsuario() {
+        return getNomeUsuario();
+    }
+
+    public String getSenha() {
+        return getSenha();
     }
 }
