@@ -57,27 +57,33 @@ public class VisualizarUmaArte extends JFrame {
 
         public AvaliacaoDialog(JFrame parent, Arte arte) {
             super(parent, "Avaliar Arte", true);
-            setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-            setSize(200, 150);
-            setLocationRelativeTo(parent);
+            Pessoa usuarioLogado = Main.getUsuarioLogado();
+            if (usuarioLogado instanceof Critico) {
+                setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+                setSize(200, 150);
+                setLocationRelativeTo(parent);
 
-            add(new JLabel("Escolha uma nota de 1 a 5:"));
 
-            // Combobox para escolher a avaliação de 1 a 5
-            avaliacaoCombo = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
-            add(avaliacaoCombo);
+                add(new JLabel("Escolha uma nota de 1 a 5:"));
 
-            confirmarButton = new JButton("Confirmar");
-            confirmarButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int avaliacao = (int) avaliacaoCombo.getSelectedItem();
-                    arte.adicionarNotaArte(avaliacao);
-                    JOptionPane.showMessageDialog(parent, "Avaliação salva com sucesso!");
-                    dispose();
-                }
-            });
-            add(confirmarButton);
+                // Combobox para escolher a avaliação de 1 a 5
+                avaliacaoCombo = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
+                add(avaliacaoCombo);
+
+                confirmarButton = new JButton("Confirmar");
+                confirmarButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int avaliacao = (int) avaliacaoCombo.getSelectedItem();
+                        arte.adicionarNotaArte(avaliacao);
+
+                        dispose();
+                    }
+                });
+                add(confirmarButton);
+            }else {
+                JOptionPane.showMessageDialog(parent, "Você não é um crítico.");
+            }
         }
     }
 }
