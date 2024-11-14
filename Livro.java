@@ -12,6 +12,10 @@ public class Livro extends Arte {
         biblioteca.add(this);
     }
 
+    public static ArrayList<Livro> getBiblioteca() {
+        return biblioteca;
+    }
+
     //To String
     public String toString() {
         return super.toString() +

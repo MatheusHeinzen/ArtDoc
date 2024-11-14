@@ -41,5 +41,13 @@ public class Musicas extends JFrame{
                 Musicas.this.dispose();
             }
         });
+
+        minhasObrasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MinhasObras();
+                Musicas.this.dispose();
+            }
+        });
     }
 }

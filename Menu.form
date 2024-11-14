@@ -79,7 +79,7 @@
         <properties/>
         <border type="none" title=""/>
         <children>
-          <component id="2734b" class="javax.swing.JList" binding="list1" default-binding="true">
+          <component id="2734b" class="javax.swing.JList" binding="listArtes">
             <constraints/>
             <properties>
               <background color="-5126683"/>

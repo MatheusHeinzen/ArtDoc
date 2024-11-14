@@ -8,40 +8,50 @@ public class Menu extends JFrame {
     private JButton livrosButton;
     private JButton pinturasButton;
     private JButton minhasObrasButton;
-    private JList list1;
     private JButton coringa;
+    private JList<Arte> listArtes;
 
-
-    public Menu(){
+    public Menu() {
         setContentPane(panel3);
         setTitle("ArtDoc");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
 
-        musicasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Musicas();
-                Menu.this.dispose();
+        // Configuração da lista de artes polimórfica
+        DefaultListModel<Arte> model = new DefaultListModel<>();
+        model.addAll(Livro.getBiblioteca());
+        model.addAll(Musica.getColetanea());
+        model.addAll(Pintura.getColecao());
+        listArtes.setModel(model);
+
+        listArtes.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                Arte arteSelecionada = listArtes.getSelectedValue();
+                if (arteSelecionada != null) {
+                    new VisualizarUmaArte(arteSelecionada);
+                }
             }
         });
 
-        livrosButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Livros();
-                Menu.this.dispose();
-            }
-        });
+        // Configuração do botão coringa baseado no tipo de usuário logado
+        Pessoa usuarioLogado = Main.getUsuarioLogado();
 
-        pinturasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Pinturas();
-                Menu.this.dispose();
-            }
-        });
+        if (usuarioLogado instanceof Comprador) {
+            coringa.setText("Saldo do Comprador");
+            coringa.addActionListener(e -> {
+                JOptionPane.showMessageDialog(this, "Saldo disponível: " + ((Comprador) usuarioLogado).getSaldo());
+            });
+        } else if (usuarioLogado instanceof Autor) {
+            coringa.setText("Avaliações do Autor");
+            coringa.addActionListener(e -> {
+                JOptionPane.showMessageDialog(this, "Sua média de avaliações é: " + ((Autor) usuarioLogado).getMediaMinhasNotas());
+            });
+        } else if (usuarioLogado instanceof Critico) {
+            coringa.setText("Avaliar um Autor");
+            coringa.addActionListener(e -> {
+                JOptionPane.showMessageDialog(this, "Função para avaliar um autor será aqui.");
+            });
+        }
     }
-
 }

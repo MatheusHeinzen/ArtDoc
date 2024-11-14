@@ -12,6 +12,10 @@ public class Pintura extends Arte {
         colecao.add(this);
     }
 
+    public static ArrayList<Pintura> getColecao() {
+        return colecao;
+    }
+
     //To String
     public String toString() {
         return super.toString() +

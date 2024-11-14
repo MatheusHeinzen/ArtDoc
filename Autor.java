@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Autor extends Pessoa {
     //Atributos
@@ -27,6 +25,10 @@ public class Autor extends Pessoa {
     }
     public void setMediaNotasMinhasArtes(double mediaNotasArtes) {
         this.mediaNotasMinhasArtes = mediaNotasArtes;
+    }
+
+    public double getMediaMinhasNotas() {
+        return mediaMinhasNotas;
     }
 
     public ArrayList<Autor> getListaAutores() {
@@ -77,5 +79,9 @@ public class Autor extends Pessoa {
         double resultado = somaNotas/minhasArtes.size();
         setMediaNotasMinhasArtes(resultado);
         return mediaNotasMinhasArtes;
+    }
+
+    public <T> ArrayList<Arte> getMinhasArtes() {
+        return minhasArtes;
     }
 }

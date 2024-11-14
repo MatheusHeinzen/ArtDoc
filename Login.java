@@ -9,26 +9,29 @@ public class Login extends JFrame {
     private JPasswordField senhaLogin;
     private JButton voltarButton;
 
-    public Login(){
+    public Login() {
         setContentPane(panel2);
         setTitle("ArtDoc");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+
+        loginButton.addActionListener(e -> {
+            String usuario = usuarioLogin.getText();
+            String senha = new String(senhaLogin.getPassword());
+
+            if (Main.autenticarUsuario(usuario, senha)) {
+                Main.setUsuarioLogado(Main.getUsuarioLogado());
                 new Menu();
-                Login.this.dispose();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!");
             }
         });
 
-        voltarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Main();
-                Login.this.dispose();
-            }
+        voltarButton.addActionListener(e -> {
+            new Main();
+            dispose();
         });
     }
 }

@@ -15,6 +15,10 @@ public class Musica extends Arte {
         coletanea.add(this);
     }
 
+    public static ArrayList<Musica> getColetanea() {
+        return coletanea;
+    }
+
     //To String
     public String toString() {
         return super.toString() +
@@ -24,13 +28,12 @@ public class Musica extends Arte {
 
     //Metodo Abstrato Implementado
     public String listarArtes() {
-        StringBuilder resultado = new StringBuilder();
-        resultado.append("Lista de Todos as Musicas:\n");
+        StringBuilder resultado = new StringBuilder("Lista de Todos as Musicas:\n");
         for (Musica musica : coletanea) {
+            resultado.append("===========================\n");
             resultado.append(musica.toString()).append("\n");
-            resultado.append("---------------------------\n");
+            resultado.append("===========================\n");
         }
         return resultado.toString();
     }
 }
-

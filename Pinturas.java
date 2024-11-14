@@ -41,5 +41,13 @@ public class Pinturas extends JFrame {
                 Pinturas.this.dispose();
             }
         });
+
+        minhasObrasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MinhasObras();
+                Pinturas.this.dispose();
+            }
+        });
     }
 }
