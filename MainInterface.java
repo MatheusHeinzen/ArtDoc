@@ -1,11 +1,10 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class MainInterface extends JFrame {
     private JButton entrarButton;
     private JPanel panel;
+    private static ArrayList<Pessoa> listaPessoas;
 
     public MainInterface() {
         setContentPane(panel);
@@ -14,49 +13,37 @@ public class MainInterface extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        // Configuração dos botões
+        // Configuração do botão entrar
         entrarButton.addActionListener(e -> {
-            new Login();
-            MainInterface.this.dispose();
+            new Login();  // Abre a janela de login
+            MainInterface.this.dispose();  // Fecha a janela principal
         });
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(MainInterface::new);
-        executarOperacoes();
-    }
-
-    private static void executarOperacoes() {
-        Scanner scanner = new Scanner(System.in);
-
-        try {
-            // Inicializando autor, comprador e crítico
-            Autor autor = criarAutor();
-            Comprador comprador = criarComprador();
-            Critico critico = criarCritico();
-
-            // Criação e listagem das artes
-            criarEListarObras(autor);
-
-        } catch (ExtensaoException e) {
-            JOptionPane.showMessageDialog(null, "Erro: Extensão de música inválida.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            scanner.close();
+        // Carregar dados de pessoas do arquivo CSV uma única vez
+        listaPessoas = carregarDadosDoCSV();
+        System.out.println("Pessoas carregadas: " + listaPessoas.size());
+        for (Pessoa pessoa : listaPessoas) {
+            System.out.println("Tipo: " + (pessoa instanceof Autor ? "Autor" : pessoa instanceof Critico ? "Critico" : "Comprador"));
+            System.out.println("Nome: " + pessoa.getUsuario());
+            System.out.println("Senha: " + pessoa.getSenha());
         }
+        SwingUtilities.invokeLater(MainInterface::new);
     }
 
-    public static Autor criarAutor() {
-        return new Autor("autor01", "Pablo Picasso", "Pablo Picasso", "Masculino");
+    private static ArrayList<Pessoa> carregarDadosDoCSV() {
+        FileManager fileManager = new FileManager("./database/pessoas.csv");
+        return fileManager.lerArquivoPessoa();
     }
 
-    public static Comprador criarComprador() {
-        return new Comprador("comprador01", "Vincent van Gogh", "Vincent van Gogh", "Masculino", 1500.0);
-    }
-
-    public static Critico criarCritico() {
-        return new Critico("critico01", "Leonardo da Vinc", "Leonardo da Vinci", "Masculino", 12345);
+    public static Pessoa autenticarUsuario(String usuario, String senha) {
+        for (Pessoa pessoa : listaPessoas) {
+            if (pessoa.getUsuario().equals(usuario) && pessoa.getSenha().equals(senha)) {
+                return pessoa; // Retorna a pessoa autenticada
+            }
+        }
+        return null; // Retorna null se o usuário não for encontrado
     }
 
     public static void criarEListarObras(Autor autor) throws ExtensaoException {
@@ -64,7 +51,6 @@ public class MainInterface extends JFrame {
         Arte livro = autor.adicionarNovaArte("livro", "Dom Quixote", 1605, 300.0, "Romance", null);
         Arte musica = autor.adicionarNovaArte("musica", "Bohemian Rhapsody", 1975, 150.0, "Rock", "mp3");
         Arte pintura = autor.adicionarNovaArte("pintura", "Guernica", 1937, 1000.0, "Cubismo", null);
-
         autor.listarMinhasArtes();
     }
 }

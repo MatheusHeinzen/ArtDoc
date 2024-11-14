@@ -41,5 +41,24 @@ public class MinhasObras extends JFrame{
                 MinhasObras.this.dispose();
             }
         });
+
+        Pessoa usuarioLogado = Main.getUsuarioLogado();
+
+        if (usuarioLogado instanceof Comprador) {
+            coringa.setText("Saldo do Comprador");
+            coringa.addActionListener(e -> {
+                JOptionPane.showMessageDialog(this, "Saldo disponível: " + ((Comprador) usuarioLogado).getSaldo());
+            });
+        } else if (usuarioLogado instanceof Autor) {
+            coringa.setText("Colocar Livro");
+            coringa.addActionListener(e -> {
+                new Cadastrar();
+            });
+        } else if (usuarioLogado instanceof Critico) {
+            coringa.setText("Avaliar um Autor");
+            coringa.addActionListener(e -> {
+                JOptionPane.showMessageDialog(this, "Função para avaliar um autor será aqui.");
+            });
+        }
     }
 }

@@ -35,6 +35,16 @@ public class Autor extends Pessoa {
         return listaAutores;
     }
 
+    @Override
+    public double getCarteira() {
+        return 0;
+    }
+    @Override
+    public int getNumCertificado() {
+        return 0;
+    }
+
+
     //Metodos para adicionar e listar Obras
     public Arte adicionarNovaArte(String tipo, String nome, int anoPublicacao, double valorArte, String generoOuEstilo, String extensao) throws ExtensaoException {
         Arte novaArte;

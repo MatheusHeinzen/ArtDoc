@@ -14,6 +14,14 @@ public class Critico extends Pessoa{
         this.numCertificado = numCertificado;
     }
 
+    public int getNumCertificado() {
+        return numCertificado;
+    }
+    @Override
+    public double getCarteira() {
+        return 0.0;
+    }
+
     //Métodos para ouvir musica e avaliar depois -- Metodo Sobrescrito.
     @Override
     public String ouvirMusica(Musica musica) {

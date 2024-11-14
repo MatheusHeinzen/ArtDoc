@@ -20,17 +20,30 @@ public class Login extends JFrame {
             String usuario = usuarioLogin.getText();
             String senha = new String(senhaLogin.getPassword());
 
-            if (Main.autenticarUsuario(usuario, senha)) {
-                Main.setUsuarioLogado(Main.getUsuarioLogado());
+            // Chama o método de autenticação centralizado em MainInterface
+            Pessoa pessoaAutenticada = MainInterface.autenticarUsuario(usuario, senha);
+            if (pessoaAutenticada != null) {
+                JOptionPane.showMessageDialog(this, "Login realizado com sucesso!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
+                Main.setUsuarioLogado(pessoaAutenticada);
+
+                // Redirecionamento com base no tipo de pessoa
+                if (pessoaAutenticada instanceof Autor) {
+                    Autor autor = (Autor) pessoaAutenticada;
+                    try {
+                        MainInterface.criarEListarObras(autor);
+                    } catch (ExtensaoException ex) {
+                        JOptionPane.showMessageDialog(null, "Erro ao criar arte: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
                 new Menu();
-                dispose();
+                dispose(); // Fecha a janela de login
             } else {
-                JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!");
+                JOptionPane.showMessageDialog(this, "Usuário ou senha inválidos.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         });
 
         voltarButton.addActionListener(e -> {
-            new Main();
+            new MainInterface(); // Volta para a tela principal
             dispose();
         });
     }

@@ -16,68 +16,61 @@ public class FileManager {
     }
 
     //Metodos para leitura de arquvivos
-    public void lerArquivoPessoa () {
-        try {
-            FileReader arquivo = new FileReader(caminhoArquivo);
-            BufferedReader br = new BufferedReader(arquivo);
-            String cabecalho = br.readLine();
-            while (br.ready()) {
-                String dado = br.readLine();
-                String [] dadoSeparado = dado.split(",");
+    public ArrayList<Pessoa> lerArquivoPessoa() {
+        ArrayList<Pessoa> pessoas = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
+            String cabecalho = br.readLine(); // Ignora o cabeçalho
+            String linha;
+            Pessoa novaPessoa;
+            while ((linha = br.readLine()) != null) {
+                String[] dadoSeparado = linha.split(",");
                 List<String> dadoTratado = Arrays.asList(dadoSeparado);
-                // get(0) = tipo
-                // get(1) = usuario
-                // get(2) = senha
-                // get(3) = nomePessoa
-                // get(4) = genero
-                // get(5) = numCertificado ou Carteira
-                Pessoa novaPessoa;
                 switch (dadoTratado.get(0).toLowerCase()) {
                     case "autor":
-                        novaPessoa = new Autor(dadoTratado.get(1),dadoTratado.get(2),dadoTratado.get(3),dadoTratado.get(4));
+                        novaPessoa = new Autor(dadoTratado.get(1), dadoTratado.get(2), dadoTratado.get(3), dadoTratado.get(4));
                         break;
                     case "comprador":
-                        double carteira = Double.parseDouble(dadoTratado.get(5));
-                        novaPessoa = new Comprador(dadoTratado.get(1),dadoTratado.get(2),dadoTratado.get(3),dadoTratado.get(4),carteira);
+                        int carteira = Integer.parseInt(dadoTratado.get(5));
+                        novaPessoa = new Comprador(dadoTratado.get(1), dadoTratado.get(2), dadoTratado.get(3), dadoTratado.get(4), carteira);
                         break;
                     case "critico":
-                        double numCertificado = Double.parseDouble(dadoTratado.get(5));
-                        novaPessoa = new Critico(dadoTratado.get(1),dadoTratado.get(2),dadoTratado.get(3),dadoTratado.get(4), (int) numCertificado);
+                        int numCertificado = Integer.parseInt(dadoTratado.get(5));
+                        novaPessoa = new Critico(dadoTratado.get(1), dadoTratado.get(2), dadoTratado.get(3), dadoTratado.get(4), numCertificado);
                         break;
                     default:
-                        throw new IllegalArgumentException("Tipo de Pessoa não validado" + dadoTratado.get(0));
+                        throw new IllegalArgumentException("Tipo de Pessoa não reconhecido: " + dadoTratado.get(0));
                 }
+                pessoas.add(novaPessoa); // Adiciona cada pessoa à lista
             }
-            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return pessoas;
     }
 
-    public void lerArquivoArte (ArrayList<Autor> listaAutores) {
+    public void lerArquivoArte(ArrayList<Autor> listaAutores) {
         try {
-            FileReader arquivo = new FileReader(caminhoArquivo);
+            FileReader arquivo = new FileReader("caminho/do/arquivo.txt");
             BufferedReader br = new BufferedReader(arquivo);
             String cabecalho = br.readLine();
             while (br.ready()) {
                 String dado = br.readLine();
                 String[] dadoSeparado = dado.split(",");
                 List<String> dadoTratado = Arrays.asList(dadoSeparado);
-                // get(0) = tipo
-                // get(1) = nome da arte
-                // get(2) = autor (nome do autor)
-                // get(3) = anoPublicacao - int
-                // get(4) = valorArte - double
-                // get(5) = generoOuEstilo
-                // get(6) = extensao
-                //PROCURANDO O AUTOR
+
                 for (Autor autor : listaAutores) {
                     if (autor.getNomePessoa().equalsIgnoreCase(dadoTratado.get(2))) {
                         int anoPublicacao = Integer.parseInt(dadoTratado.get(3));
                         double valorArte = Double.parseDouble(dadoTratado.get(4));
-                        autor.adicionarNovaArte(dadoTratado.get(0), dadoTratado.get(1), anoPublicacao, valorArte, dadoTratado.get(5), dadoTratado.get(6));
-                    } else {
-                        System.out.println("Autor não encontrado: " + dadoTratado.get(2));
+                        autor.adicionarNovaArte(
+                                dadoTratado.get(0),
+                                dadoTratado.get(1),
+                                anoPublicacao,
+                                valorArte,
+                                dadoTratado.get(5),
+                                dadoTratado.size() > 6 ? dadoTratado.get(6) : null
+                        );
+                        break; // Pare o loop após encontrar o autor certo
                     }
                 }
             }

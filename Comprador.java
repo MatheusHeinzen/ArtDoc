@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class Comprador extends Pessoa{
     //Atributos
-    private double carteira;
+    private int carteira;
     private ArrayList<Arte> minhasArtesCompradas = new ArrayList<Arte>();
     private ArrayList<Arte> minhaListaDeDesejos = new ArrayList<Arte>();
 
     //Construtor
-    public Comprador(String usuario, String senha, String nomePessoa, String genero, double carteira) {
+    public Comprador(String usuario, String senha, String nomePessoa, String genero, int carteira) {
         super(usuario, senha, nomePessoa, genero);
         this.carteira = carteira;
 
@@ -25,6 +25,15 @@ public class Comprador extends Pessoa{
             System.out.println(arte.getNomeArte());
         }
     }
+    @Override
+    public double getCarteira() {
+        return carteira;
+    }
+    @Override
+    public int getNumCertificado() {
+        return 0;
+    }
+
 
     //Métodos para adicionar fundos e comprar Artes.
     public String adicionarSaldo(double dinheiro){

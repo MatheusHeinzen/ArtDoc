@@ -11,7 +11,7 @@ public abstract class Pessoa implements Serializable {
     private ArrayList<Musica> playlist = new ArrayList<>();
 
     //Construtor
-    public Pessoa(String usuario, String nomePessoa, String senha, String genero){
+    public Pessoa(String usuario, String senha, String nomePessoa, String genero){
         this.usuario = usuario;
         this.senha = senha;
         this.nomePessoa = nomePessoa;
@@ -25,6 +25,21 @@ public abstract class Pessoa implements Serializable {
     public ArrayList<Musica> getPlaylist() {
         return new ArrayList<>(playlist);
     }
+    public String getUsuario() {
+        return usuario;
+    }
+    public String getSenha() {
+        return senha;
+    }
+    public String getNome() {
+        return nomePessoa;
+    }
+    public String getGenero() {
+        return genero;
+    }
+    public abstract double getCarteira();
+    public abstract int getNumCertificado();
+
 
     //Metodos utilizando Musicas
     public String ouvirMusica(Musica musica) {
