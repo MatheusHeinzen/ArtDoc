@@ -1,16 +1,22 @@
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Main {
     public static Pessoa usuarioLogado;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new MainInterface());
+        Autor autorAdmin = new Autor ("autorAdmin","123","nomeAutor","m");
+        FileManager listaPessoas = new FileManager("./database/pessoas.csv");
+        listaPessoas.lerArquivoPessoa();
+        ArrayList listaAutoresAtualizada = autorAdmin.getListaAutores();
+        FileManager listaArtes = new FileManager("./database/artes.csv");
+        listaArtes.lerArquivoArte(listaAutoresAtualizada);
     }
 
     public static void setUsuarioLogado(Pessoa usuario) {
         usuarioLogado = usuario;
     }
-
     public static Pessoa getUsuarioLogado() {
         return usuarioLogado;
     }
