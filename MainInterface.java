@@ -101,7 +101,12 @@ public class MainInterface extends JFrame {
             // Inicia a interface gráfica
             SwingUtilities.invokeLater(() -> new MainInterface());
 
-
+            // Salva os dados ao fechar a aplicação
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                fileManagerPessoas.salvarArquivoPessoa((ArrayList<Pessoa>) listaPessoas);
+                fileManagerArtes.salvarArquivoArte(listaArtes);
+                System.out.println("Dados salvos ao encerrar.");
+            }));
         }
 
         public static void setUsuarioLogado(Pessoa usuario) {
@@ -121,7 +126,4 @@ public class MainInterface extends JFrame {
             return false;
         }
     }
-
-
-
 }

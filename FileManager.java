@@ -121,6 +121,9 @@ public class FileManager {
 
         }
     }
+
+    public void salvarArquivoArte(ArrayList<Arte> listaArtes) {
+    }
 }
 
 
