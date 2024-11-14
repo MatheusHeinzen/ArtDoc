@@ -25,13 +25,25 @@ public class VisualizarUmaArte extends JFrame {
         mostrarAno();
         mostrarAutor();
 
-        // Adiciona a ação ao botão avaliar
-        avaliarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                abrirDialogoAvaliacao();
-            }
-        });
+        Pessoa usuarioLogado = Main.getUsuarioLogado();
+
+        if (usuarioLogado instanceof Critico) {
+            avaliarButton.setVisible(true);
+            avaliarButton.addActionListener(e -> abrirDialogoAvaliacao());
+        } else {
+            avaliarButton.setVisible(false);
+        }
+
+        if (usuarioLogado instanceof Comprador) {
+            comprarButton.setVisible(true);
+            comprarButton.addActionListener(e -> {
+                ((Comprador) usuarioLogado).comprarArte(arte);
+                JOptionPane.showMessageDialog(this, "Obra comprada com sucesso!");
+                dispose();
+            });
+        } else {
+            comprarButton.setVisible(false);
+        }
     }
 
     public void mostrarNome() {
@@ -57,34 +69,21 @@ public class VisualizarUmaArte extends JFrame {
 
         public AvaliacaoDialog(JFrame parent, Arte arte) {
             super(parent, "Avaliar Arte", true);
-            Pessoa usuarioLogado = Main.getUsuarioLogado();
-            if (usuarioLogado instanceof Critico) {
-                setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-                setSize(200, 150);
-                setLocationRelativeTo(parent);
+            setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+            setSize(200, 150);
+            setLocationRelativeTo(parent);
 
+            add(new JLabel("Escolha uma nota de 1 a 5:"));
+            avaliacaoCombo = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
+            add(avaliacaoCombo);
 
-                add(new JLabel("Escolha uma nota de 1 a 5:"));
-
-                // Combobox para escolher a avaliação de 1 a 5
-                avaliacaoCombo = new JComboBox<>(new Integer[]{1, 2, 3, 4, 5});
-                add(avaliacaoCombo);
-
-                confirmarButton = new JButton("Confirmar");
-                confirmarButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        int avaliacao = (int) avaliacaoCombo.getSelectedItem();
-                        arte.adicionarNotaArte(avaliacao);
-
-                        dispose();
-                    }
-                });
-                add(confirmarButton);
-            }else {
-                JOptionPane.showMessageDialog(parent, "Você não é um crítico.");
-                parent.dispose();
-            }
+            confirmarButton = new JButton("Confirmar");
+            confirmarButton.addActionListener(e -> {
+                int avaliacao = (int) avaliacaoCombo.getSelectedItem();
+                arte.adicionarNotaArte(avaliacao);
+                dispose();
+            });
+            add(confirmarButton);
         }
     }
 }

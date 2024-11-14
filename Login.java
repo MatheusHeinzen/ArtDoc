@@ -20,7 +20,6 @@ public class Login extends JFrame {
             String usuario = usuarioLogin.getText();
             String senha = new String(senhaLogin.getPassword());
 
-            // Chama o método de autenticação centralizado em MainInterface
             Pessoa pessoaAutenticada = MainInterface.autenticarUsuario(usuario, senha);
             if (pessoaAutenticada != null) {
                 JOptionPane.showMessageDialog(this, "Login realizado com sucesso!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
@@ -34,6 +33,15 @@ public class Login extends JFrame {
                     } catch (ExtensaoException ex) {
                         JOptionPane.showMessageDialog(null, "Erro ao criar arte: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     }
+                } else {
+                    Autor autor = new Autor("Marina", "123", "Marina", "F");
+                    Arte livro = new Livro("Dom Quixote", autor, 1605, 300.0, "Romance");
+                    try {
+                        Arte musica = new Musica("Bohemian Rhapsody",autor,1975, 150.0, "Rock", "mp3");
+                    } catch (ExtensaoException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    Arte pintura = new Pintura("Guernica", autor,  1937, 1000.0, "Cubismo");
                 }
                 new Menu();
                 dispose(); // Fecha a janela de login

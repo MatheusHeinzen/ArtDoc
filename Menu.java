@@ -18,7 +18,7 @@ public class Menu extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        // Configuração da lista de artes polimórfica
+        // Configuração da lista de artes com todas as obras
         DefaultListModel<Arte> model = new DefaultListModel<>();
         model.addAll(Livro.getBiblioteca());
         model.addAll(Musica.getColetanea());
@@ -34,33 +34,10 @@ public class Menu extends JFrame {
             }
         });
 
-        musicasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Musicas();
-            }
-        });
-
-        livrosButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                new Livros();
-            }
-        });
-
-        pinturasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Pinturas();
-            }
-        });
-
-        minhasObrasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new MinhasObras();
-            }
-        });
+        musicasButton.addActionListener(e -> new Musicas());
+        livrosButton.addActionListener(e -> new Livros());
+        pinturasButton.addActionListener(e -> new Pinturas());
+        minhasObrasButton.addActionListener(e -> new MinhasObras());
 
         // Configuração do botão coringa baseado no tipo de usuário logado
         Pessoa usuarioLogado = Main.getUsuarioLogado();

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Critico extends Pessoa{
@@ -57,5 +58,9 @@ public class Critico extends Pessoa{
     }
     public String toCSV() {
         return "critico" + "," + gettoCSV();
+    }
+
+    public List<Arte> getArtesAvaliadas() {
+        return artesAvaliadas;
     }
 }

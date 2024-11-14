@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Comprador extends Pessoa{
     //Atributos
@@ -55,5 +56,9 @@ public class Comprador extends Pessoa{
     }
     public String toCSV() {
         return "comprador" + "," + gettoCSV();
+    }
+
+    public List<Arte> getMinhasArtesCompradas() {
+        return minhasArtesCompradas;
     }
 }

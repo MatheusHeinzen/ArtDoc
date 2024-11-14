@@ -1,7 +1,7 @@
 tipo, nome, autor, ano, valor, genero, extensão
-musica, Sons do Amanhecer, matheuzin, 2012, 500, rock, mp3
-musica, Ritmo do Morro, vinicin, 2015, 600, funk, mp3
-pintura, Reflexos de Memória, matheuzin, 2015, 2000, cubismo
-pintura, Harmonia Natural, vinicin, 2019, 4000, naturalismo
-livro, As Sombras do Passado, edzin, 2010, 400, drama histórico
-livro, Um Novo Amanhã, edzin, 2018, 800, romance contemporâneo
+musica, Sons do Amanhecer, matheus, 2012, 500, rock, mp3
+musica, Ritmo do Morro, vinicius, 2015, 600, funk, mp3
+pintura, Reflexos de Memória, matheus, 2015, 2000, cubismo
+pintura, Harmonia Natural, vinicius, 2019, 4000, naturalismo
+livro, As Sombras do Passado, edzmund, 2010, 400, drama histórico
+livro, Um Novo Amanhã, edmund, 2018, 800, romance contemporâneo
