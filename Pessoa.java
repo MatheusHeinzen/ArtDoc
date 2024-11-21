@@ -48,5 +48,29 @@ public abstract class Pessoa implements Serializable {
     public String admirarPintura() {
         return "Nooossa! Que bela de uma pintura daora!!! 🤩🤩🤩";
     }
+<<<<<<< Updated upstream
 }
 
+=======
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public String getNome() {
+        return nomePessoa;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public abstract double getCarteira();
+
+    public abstract int getNumCertificado();
+}
+>>>>>>> Stashed changes

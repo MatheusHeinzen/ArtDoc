@@ -26,6 +26,16 @@ public class Comprador extends Pessoa{
         }
     }
 
+    @Override
+    public double getCarteira() {
+        return carteira;
+    }
+
+    @Override
+    public int getNumCertificado() {
+        return 0;
+    }
+
     //Métodos para adicionar fundos e comprar Artes.
     public String adicionarSaldo(double dinheiro){
         if (dinheiro>0){

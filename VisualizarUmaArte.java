@@ -34,6 +34,6 @@ public class VisualizarUmaArte extends JFrame {
     }
 
     public void mostrarAutor(){
-        nomeDoAutor.setText(arte.getAutor());
+        nomeDoAutor.setText(arte.getAutor().getNomePessoa());
     }
 }

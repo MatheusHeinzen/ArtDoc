@@ -38,6 +38,14 @@ public abstract class Arte {
         this.mediaNotasArte = mediaNotasArte;
     }
 
+    public int getAnoPublicacao() {
+        return anoPublicacao;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
     //Métodos adicionando notas na Arte e calculando a Media das Notas.
     public void adicionarNotaArte(int avaliacao){
         notasArte.add(avaliacao);

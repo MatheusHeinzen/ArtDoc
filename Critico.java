@@ -47,4 +47,13 @@ public class Critico extends Pessoa{
         autoresAvaliados.add(autor);
         return "Autor avaliado.";
     }
+
+    public int getNumCertificado() {
+        return numCertificado;
+    }
+
+    @Override
+    public double getCarteira() {
+        return 0.0;
+    }
 }

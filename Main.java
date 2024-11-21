@@ -1,29 +1,198 @@
+
+//public class Main {
+//    public static void main(String[] args) {
+//        try {
+//            // Criando um autor
+//            Autor autor = new Autor("pedringo22", "2121", "jorge", "kjafbjka");
+//
+//            // Criando instâncias de diferentes artes
+//            Livro livro = new Livro("Dom Quixote", autor, 1605, 500, "Romance");
+//            Musica musica = new Musica("Imagine", autor, 1971, 100, "Rock", "mp3");
+//            Pintura pintura = new Pintura("Noite Estrelada", autor, 1889, 2000000, "Impressionismo");
+//
+//            // Adicionando notas a cada arte
+//            livro.adicionarNotaArte(8);
+//            livro.adicionarNotaArte(9);
+//            System.out.println("Média das notas para o livro '" + livro.getNomeArte() + "': " + livro.calcularMediaNotasArte());
+//
+//            musica.adicionarNotaArte(10);
+//            musica.adicionarNotaArte(9);
+//            System.out.println("Média das notas para a música '" + musica.getNomeArte() + "': " + musica.calcularMediaNotasArte());
+//
+//            pintura.adicionarNotaArte(7);
+//            pintura.adicionarNotaArte(8);
+//            System.out.println("Média das notas para a pintura '" + pintura.getNomeArte() + "': " + pintura.calcularMediaNotasArte());
+//
+//            // Exibindo detalhes e listando todas as artes criadas
+//            System.out.println("\n--- Detalhes das Artes ---");
+//            System.out.println(livro);
+//            System.out.println(musica);
+//            System.out.println(pintura);
+//
+//            // Listando todas as artes (utilizando os métodos listarArtes de cada subclasse)
+//            System.out.println("\n--- Listagem de Livros ---");
+//            System.out.println(livro.listarArtes());
+//
+//            System.out.println("\n--- Listagem de Músicas ---");
+//            System.out.println(musica.listarArtes());
+//
+//            System.out.println("\n--- Listagem de Pinturas ---");
+//            System.out.println(pintura.listarArtes());
+//
+//        } catch (ExtensaoException e) {
+//            System.out.println("Erro: Extensão inválida para a música.");
+//        }
+//    }
+//}
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Scanner;
+
 import javax.swing.*;
 
-public class Main {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater( () -> {
-            InterfaceGrafica frame = new InterfaceGrafica();
-            frame.setVisible(true);
+public class Main extends JFrame {
+    private JButton entrarButton;
+    private JPanel panel;
+    private JButton cadastrarButton;
+
+    public Main() {
+        setContentPane(panel);
+        setTitle("ArtDoc");
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        entrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Login();
+                Main.this.dispose();
+            }
         });
 
-        Livro livro1 = new Livro("Harry Potter", "JK", "mlk q quase morreu", 1997, "Ficção", 300, "Sinopse A", 39.90);
-        Livro livro2 = new Livro("IT", "Stephen King", "molecada ferrada com um et", 2014, "Terror", 250, "Sinopse B", 29.90);
+        cadastrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Cadastrar();
+                Main.this.dispose();
+            }
+        });
+    }
 
-        livro1.listarObras();
+    public static void main(String[] args) {
+<<<<<<< Updated upstream
+        new Main();
 
-        Critico c = new Critico("Jorge", "30/09", "M" , "123", "Confia");
-
-        c.avaliarArte(5, livro1);
-        c.avaliarArte(0, livro1);
-        System.out.println(livro1.mediaNota());
+        Scanner scanner = new Scanner(System.in);
 
         try {
-            Musica musica1 = new Musica("Risk", "Deftones", "Musica Top", 2006, "NuMetal", 3, 40, "mp4");
-        }
-        catch (ExtensaoException e) {
-            System.out.println(e.getMessage());
-        }
+            // Criando um autor, comprador, e critico
+            Autor autor = new Autor("autor01", "senha123", "Pablo Picasso", "Masculino");
+            Comprador comprador = new Comprador("comprador01", "senha123", "Vincent van Gogh", "Masculino", 1500.0);
+            Critico critico = new Critico("critico01", "senha123", "Leonardo da Vinci", "Masculino", 12345);
 
+            // Adicionando novas artes ao autor
+            System.out.println("Adicionando novas obras para o autor...");
+            Arte livro = autor.adicionarNovaArte("livro", "Dom Quixote", 1605, 300.0, "Romance", null);
+            Arte musica = autor.adicionarNovaArte("musica", "Bohemian Rhapsody", 1975, 150.0, "Rock", "mp3");
+            Arte pintura = autor.adicionarNovaArte("pintura", "Guernica", 1937, 1000.0, "Cubismo", null);
+
+            // Listando as obras do autor
+            System.out.println("\n--- Obras do Autor ---");
+            autor.listarMinhasArtes();
+
+            // Comprador adiciona saldo e tenta comprar uma arte
+            System.out.println("\n--- Comprador ---");
+            System.out.println(comprador.adicionarSaldo(500.0));
+            System.out.println("Saldo atual do comprador: R$ " + comprador.getSaldo());
+            System.out.println(comprador.comprarArte(livro)); // Compra com sucesso
+            System.out.println(comprador.comprarArte(pintura)); // Falta de saldo
+
+            // Comprador adiciona a pintura na lista de desejos e vê a lista
+            comprador.adicionarNaMinhaListaDeDesejos(pintura);
+            System.out.println("\n--- Lista de Desejos do Comprador ---");
+            comprador.verMinhaListaDeDesejos();
+
+            // Critico avalia a arte e o autor
+            System.out.println("\n--- Crítico Avaliando Arte e Autor ---");
+            System.out.print("Digite uma nota para a arte (Guernica): ");
+            int notaArte = scanner.nextInt();
+            System.out.println(critico.avaliarArte(notaArte, pintura));
+
+            System.out.print("Digite uma nota para o autor (Pablo Picasso): ");
+            int notaAutor = scanner.nextInt();
+            System.out.println(critico.avaliarAutor(notaAutor, autor));
+
+            // Crítico ouve uma música e adiciona à sua playlist
+            System.out.println("\n--- Crítico Ouve Música ---");
+            System.out.println(critico.ouvirMusica((Musica) musica));
+            System.out.println(critico.adicionarNaPlaylist((Musica) musica));
+            System.out.println("\n--- Playlist do Crítico ---");
+            System.out.println(critico.visualizarPlaylist());
+
+            // Calculando médias de notas do autor e das suas obras
+            System.out.println("\n--- Médias de Notas ---");
+            System.out.println("Média das notas do autor: " + autor.calcularMediaMinhasNotas());
+            System.out.println("Média das notas das obras do autor: " + autor.calcularMediaNotasMinhasArtes());
+
+        } catch (ExtensaoException e) {
+            System.out.println("Erro: Extensão de música inválida.");
+        } catch (NotaNegativaException e) {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            scanner.close();
+        }
     }
 }
+=======
+        SwingUtilities.invokeLater(() -> new MainInterface());
+
+        // Carrega a lista de pessoas a partir do CSV
+        FileManager listaPessoas = new FileManager("./database/pessoas.csv");
+        ArrayList<Pessoa> pessoas = listaPessoas.lerArquivoPessoa();
+
+        // Carrega as artes após inicializar autores (supondo que seja necessário)
+        ArrayList<Autor> listaAutoresAtualizada = new ArrayList<>();
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa instanceof Autor) {
+                listaAutoresAtualizada.add((Autor) pessoa);
+            }
+        }
+        FileManager listaArtes = new FileManager("./database/artes.csv");
+        listaArtes.lerArquivoArte(listaAutoresAtualizada);
+    }
+
+    public static void setUsuarioLogado(Pessoa usuario) {
+        usuarioLogado = usuario;
+    }
+
+    public static Pessoa getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
+    public static boolean autenticarUsuario(String usuario, String senha) {
+        // Carrega a lista de pessoas para autenticação
+        FileManager listaPessoas = new FileManager("./database/pessoas.csv");
+        ArrayList<Pessoa> pessoas = listaPessoas.lerArquivoPessoa();
+
+        // Procura por uma correspondência de usuário e senha
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa.getUsuario().equals(usuario) && pessoa.getSenha().equals(senha)) {
+                // Verifica o tipo de pessoa e instancia a subclasse correta
+                if (pessoa instanceof Autor) {
+                    usuarioLogado = new Autor(pessoa.getUsuario(), pessoa.getSenha(), pessoa.getNome(), pessoa.getGenero());
+                } else if (pessoa instanceof Comprador) {
+                    usuarioLogado = new Comprador(pessoa.getUsuario(), pessoa.getSenha(), pessoa.getNome(), pessoa.getGenero(), pessoa.getCarteira());
+                } else if (pessoa instanceof Critico) {
+                    usuarioLogado = new Critico(pessoa.getUsuario(), pessoa.getSenha(), pessoa.getNome(), pessoa.getGenero(), pessoa.getNumCertificado());
+                }
+                return true;
+            }
+        }
+        return false; // Retorna falso se não encontrar uma correspondência
+    }
+}
+>>>>>>> Stashed changes
